@@ -1,0 +1,233 @@
+<html>
+
+<head>
+    <title> check ticket </title>
+    <link href="css/Site.css" rel="stylesheet" type="text/css" />
+    <link href="css/Site2.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="images/Favicon.ico" />
+    <!-- Google jQuery API -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="Scripts/cookies.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function setLanguages() {
+            var lang = $('#ctl00_ddlLanguges').val();
+
+            // Chỉ set cookies khi thực hiện đổi ngôn ngữ
+            setCookie('c_lang', lang, 30);
+
+
+            var queryParameters = {}, queryString = location.search.substring(1), re = /([^&=]+)=([^&]*)/g, m;
+
+            // Creates a map with the query string parameters
+            while (m = re.exec(queryString)) {
+                queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+
+
+            queryParameters['lang'] = lang;
+
+
+            location.search = $.param(queryParameters); // Causes page to reload
+        }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148969400-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148969400-2');
+    </script>
+
+
+</head>
+
+<body>
+    <form name="aspnetForm" method="post"
+        action="./?lang=vi&amp;fbclid=IwAR0Z5rNg4typ4dgP13KVwHbFN8uytXLGWO1HRHbxjqopJg6MdtAeta5qYdQ"
+        onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+        <div>
+            <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+            <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+                value="/wEPDwUIMzczNDQ5NDIPZBYCZg9kFgICAw9kFgICAw9kFgICEQ9kFgJmD2QWBAIFDw8WAh4HVmlzaWJsZWhkZAILDw8WAh8AaGRkZJekB1makDCfd2QoPRl/BlpvTkrIOSpS9mfdlJ/0pMhT" />
+        </div>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var theForm = document.forms['aspnetForm'];
+            if (!theForm) {
+                theForm = document.aspnetForm;
+            }
+            function __doPostBack(eventTarget, eventArgument) {
+                if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                    theForm.__EVENTTARGET.value = eventTarget;
+                    theForm.__EVENTARGUMENT.value = eventArgument;
+                    theForm.submit();
+                }
+            }
+            //]]>
+        </script>
+
+
+        <script
+            src="/WebResource.axd?d=6uXiy5mIKXcTLyDiC38RKSbeL6dZTG1rQ0hl6WSKCJsqMuVUKu71-NKdUidCgeim86o25gxVuhCiSe90GvxPprdI8X6-BUb3Nj13uvPZSGw1&amp;t=637454320754849868"
+            type="text/javascript"></script>
+
+
+        <script
+            src="/ScriptResource.axd?d=FGgiCDxl7JlJwG2eyWJnZAz-rE4TCNLgsaU2FzJPuhTNL9N95fptu9S-Wu8e203WnWGzQoBEeT0ZHm9VHE5rVn6E4iA3euJDUBPMVg42N4noUU-mzn4f85txv_h77vztQ6lKRlAi93h5tfc0KRhYR4Q4f3TqQ7Wp5bVe9U3yyDE1&amp;t=ffffffffe191061b"
+            type="text/javascript"></script>
+        <script
+            src="/ScriptResource.axd?d=kPriKyttGjRZj8GoIalexruFIAkjsaY9eBNQDF3rP3F17UnPWcMX59Z4A0sysOLCzAIMFclz9B0_qOUA1GcpDFo3nNZjkG_GF6b2fI598INvPv7PmovxxYsIdOXzebshegDoIiKG9LKgJXzxrthMshgHc0t9L9GR1xTJfFgCjX6giDv_GjZSZ4FC4D5FX1TN0&amp;t=363be08"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            if (typeof (Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+            //]]>
+        </script>
+
+        <script
+            src="/ScriptResource.axd?d=dzyWTw9w9FSFdvCszfsi6DTDm4Qmt_4QIUMZlTJ3PEY3_iD-RJ0cOtfGiF8yHG3dbIf4JtqSTkLpuj30_1F9B7HARGre54Km7u3IEIlvQmmYR1YBpsNUTuzIAhx2rbdN-8tkII5nf6x4j36A8ZNU8zjVdTiYBTX-X9SUbJQKdtRdbJGsnBYwygFWln-ODCgd0&amp;t=363be08"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            function WebForm_OnSubmit() {
+                if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+                return true;
+            }
+            //]]>
+        </script>
+
+        <div>
+
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="7C072245" />
+            <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+                value="/wEdAAhgf+7f4w6ljjntbZ8zUbryIRLLJuBjedA+Xi+YG9ceOuo7a9W3Gz8Stgky/jeaUlOQBvqQiUdnb0paTBKMD7l4mbXYc3O4TBy+h83119DeTEjUQCxgKje2eGyRbDpjlVYp+jqbhRZb3cBL5L7qteWkygWSOPXcC/qMNAecXZu5OdHGol3sly/740xU+64fJadOVY0d46nlZP0lAnDePNQO" />
+        </div>
+        <div class="page">
+            <div class="header">
+                <!-- Logo -->
+                <div class="logo">
+                    <a style="text-decoration: none">
+
+                    </a>
+                </div>
+                <div style="float: right; margin-right: 8px; margin-top: 58px">
+                    <select name="ctl00$ddlLanguges" id="ctl00_ddlLanguges" class="languagesEntry"
+                        onchange="javascript: setLanguages();">
+                        <option selected="selected" value="vi">English</option>
+                        <option value="en">English</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="clear" style="height: 10px">
+            </div>
+            <div id="main" style="min-height: 340px">
+                <div id="centerPage">
+
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        Sys.WebForms.PageRequestManager._initialize('ctl00$MainContent$ScriptManager', 'aspnetForm', ['tctl00$MainContent$updatePanel2', '', 'tctl00$MainContent$updatePanelInfor', ''], ['ctl00$MainContent$buttonSearch', ''], [], 600, 'ctl00');
+            //]]>
+                    </script>
+
+                    <script type="text/javascript">
+                        // http://www.dotnettechy.com/problem-solutions/avoid-double-click-on-button-inside-updatepanel-2.aspx
+                        var pbControl = null;
+                        var prm = Sys.WebForms.PageRequestManager.getInstance();
+                        prm.add_beginRequest(BeginRequestHandler);
+                        prm.add_endRequest(EndRequestHandler);
+
+                        function BeginRequestHandler(sender, args) {
+                            pbControl = args.get_postBackElement(); //the control causing the postback 
+                            pbControl.disabled = 'disabled';
+
+                            // disable other controls
+                            $('#ctl00_MainContent_txtReservationNumber').attr("disabled", "disabled");
+
+                            $('#divInformation').slideUp();
+
+                            $('#ctl00_MainContent_updateProgress').show();
+                        }
+
+                        function EndRequestHandler(sender, args) {
+                            // enable other controls
+                            $('#ctl00_MainContent_txtReservationNumber').removeAttr("disabled");
+
+                            $('#divInformation').slideDown("slow");
+
+                            pbControl.disabled = '';
+                            pbControl = null;
+                        }
+
+                        function AbortRequestHandler() {
+                            if (prm.get_isInAsyncPostBack()) {
+                                prm.abortPostBack();
+                            }
+
+                            return false;
+                        }
+                    </script>
+                    <div class="center" style="width: 90%">
+
+                        <div class="box">
+                            <div style="margin: 20px 0 0 20px">
+                                <table style="border-spacing: 5px;">
+                                    <tr>
+                                        <td style="white-space: nowrap; width: 33%">
+                                            <span>Booking code (*)</span>:
+                                            <br />
+                                            <input name="ctl00$MainContent$txtReservationNumber" type="text"
+                                                id="ctl00_MainContent_txtReservationNumber" class="textEntry" />
+                                            <span id="ctl00_MainContent_ctl02" class="failureNotification"
+                                                style="color:Red;visibility:hidden;">*</span>
+                                        </td>
+                                        <td style="white-space: nowrap; width: 33%">
+                                            <span id="ctl00_MainContent_Label21">Last name (example: Nguyen) (*)</span>:
+                                            <br />
+                                            <input name="ctl00$MainContent$txtLastname" type="text"
+                                                id="ctl00_MainContent_txtLastname" class="textEntry"
+                                                placeholder="Nguyen" />
+                                            <span id="ctl00_MainContent_ctl03" class="failureNotification"
+                                                style="color:Red;visibility:hidden;">*</span>
+                                        </td>
+                                        <td style="white-space: nowrap; width: 33%">
+                                            <span id="ctl00_MainContent_Label22">Middle name and First name (example:
+                                                Thi Bao Thu) (*)</span>:
+                                            <br />
+                                            <input name="ctl00$MainContent$txtFirstname" type="text"
+                                                id="ctl00_MainContent_txtFirstname" class="textEntry"
+                                                placeholder="Thi Bao Thu" />
+                                            <span id="ctl00_MainContent_RequiredFieldValidator1"
+                                                class="failureNotification"
+                                                style="color:Red;visibility:hidden;">*</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="white-space: nowrap;vertical-align: top;text-align: left;">
+                                            <span>Verification</span>:
+                                            <br />
+                                            <div id="ctl00_MainContent_updatePanel2">
+
+
+                                                <img id="ctl00_MainContent_capchat111" style="border-width:0px;" />
+                                                <br />
+                                                <input name="ctl00$MainContent$txtCaptcha" type="text"
+                                                    id="ctl00_MainContent_txtCaptcha" class="textEntrycaptcha" />
+
+                                            </div>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </div>
+    </form>
+</body>
+
+</html>

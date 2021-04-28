@@ -1,0 +1,100 @@
+﻿body .button {
+    background-image: url("../images/button_sb_161.png");
+    color: #000000 !important;
+    display: block;
+    font-size: 11px;
+    line-height: 3;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 161px;
+    font-weight: bold;
+}
+
+div .box {
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 1px;
+    border-style: solid;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 12px;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+    font-weight: normal !important;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+:-moz-placeholder {
+    font-style: italic;
+    font-weight: normal !important;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+:-ms-input-placeholder {
+    font-style: italic;
+    font-weight: normal !important;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+input {
+    padding: 2px;
+    width: 180px;
+    height: 26px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+select {
+    padding: 2px;
+    width: auto;
+    height: 26px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+input[type=checkbox], input[type=radio] {
+    height: auto;
+    width: auto;
+}
+
+input.textEntry {
+    font-weight: bold;
+}
+
+select.languagesEntry {
+    -moz-padding: 1px !important;
+    padding: 1px;
+    width: 80px;
+    height: 22px;
+    font-size: 11px;
+}
+
+/* HEADER */
+table tr.trHeader {
+    height: 30px;
+    background-color: #E51F20;
+    color: #fff;
+    font-size: 12px;
+}
+
+table tr.trRow {
+    height: 25px;
+    background: none repeat scroll 0 0 #FFEF9A;
+    color: #000000;
+    font-weight: bold;
+}
+
+span.textHeader {
+    font-size: 14pt;
+}
+
+span.allocHeader {
+    font-size: 12pt;
+}
