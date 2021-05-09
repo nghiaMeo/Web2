@@ -25,27 +25,27 @@
             <div class="app-header-left">
                 <ul class="header-menu nav">
                     <li class="nav-item">
-                        <a href="admin.html">
+                        <a href="admin.php">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i
-                                class="nav-link-icon fa fa-home"> Home</i></button>
+                                    class="nav-link-icon fa fa-home"> Home</i></button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="qlUser.html">
+                        <a href="qlUser.php">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i
-                                class="nav-link-icon fa fa-user"> Users</i></button>
+                                    class="nav-link-icon fa fa-user"> Users</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="Tickets.html" >
+                        <a href="Tickets.php">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                class="nav-link-icon fa fa-tickets"> Tickets</i></button>
+                                    class="nav-link-icon fa fa-tickets"> Tickets</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="Tickets.html" >
+                        <a href="Tickets.php">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                class="nav-link-icon fa fa-list"> Order management</i></button>
+                                    class="nav-link-icon fa fa-list"> Order management</i></button>
                         </a>
                     </li>
                 </ul>
@@ -106,21 +106,22 @@
                                     <div class="text-center text-muted">nghiameow@gmail.com
                                     </div>
                                 </td>
-                                <td class="text-center" ><img src="/Air/img/meo1.jpg" alt="" width="100px" ></td>
+                                <td class="text-center"><img src="/Air/img/meo1.jpg" alt="" width="100px"></td>
                                 <td class="text-center">
                                     <button class="mr-2 btn-icon btn-icon-only btn btn-outline-alternate">
-                                            <div class="btn-group">
-                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                                    
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                                </a>
-                                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                                    class="dropdown-menu dropdown-menu-right">
-                                                    <p  class="dropdown">Profile</p>
-                                                    <p  class="dropdown">Log out</p>
-                                                </div>
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                class="p-0 btn">
+
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true"
+                                                class="dropdown-menu dropdown-menu-right">
+                                                <p class="dropdown">Profile</p>
+                                                <p class="dropdown">Log out</p>
                                             </div>
-                                        </button>
+                                        </div>
+                                    </button>
                                 </td>
                                 <td class="text-center">
                                     <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
@@ -137,11 +138,11 @@
                         <ul class="pagination">
                             <li class="page-item "><a href="javascript:void(0);" class="page-link"
                                     aria-label="Previous"><span aria-hidden="true">«</span><span
-                                        class="sr-only">Previous</span></a></li>
-                            
+                                        class="sr-only"></span></a></li>
+
                             <li class="page-item"><a href="javascript:void(0);" class="page-link"
-                                    aria-label="Next"><span aria-hidden="true">»</span><span
-                                        class="sr-only">Next</span></a></li>
+                                    aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only"></span></a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

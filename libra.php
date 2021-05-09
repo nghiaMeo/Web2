@@ -1,11 +1,10 @@
 <?php
 session_start();
-
 function createDBConnection() {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "dct119c2";
+    $dbname = "plane";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -16,11 +15,14 @@ function createDBConnection() {
 
     return $conn;
 }
-
 function login($user, $pass)
 {
+    
     $conn = createDBConnection();
-
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
     $sql = "SELECT * FROM admin WHERE tkAdmin='" . "$user" . "'";
     $result = $conn->query($sql);
 
@@ -30,14 +32,14 @@ function login($user, $pass)
             if ($row['Matkhau'] == $pass) {
                 // login thanh cong
                 $_SESSION['tkAdmin'] = $user;
-                return "login thanh cong";
+                return true;
             }
             else {
-                return "sai password";    
+                return "* Error password";    
             }
         }
     } else {
-        return "khong co username nay";
+        return "* This admin was not found";
     }
     $conn->close();
 }

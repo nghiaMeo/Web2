@@ -1,21 +1,15 @@
+<?php
+require_once('libra.php');
+$loginResult = "";
+if (isset($_POST['ID_AD'])) {
+    $loginResult = login($_POST['ID_AD'], $_POST['Passwd']);
+}
+?>
 <!doctype html>
+
 <html lang="en">
 
 <head>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <title>ADMIN</title>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/fontAwesome.css" rel="stylesheet">
@@ -24,7 +18,7 @@
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(54, 50, 50);">
         <div class="app-header__logo">
-            <img src="/Air/img/logo.png" alt="">
+            <img src="img/logo.png" alt="">
         </div>
         <div class="app-header__menu">
             <span>
@@ -39,21 +33,18 @@
             <div class="app-header-left">
                 <ul class="header-menu nav">
                     <li class="nav-item">
-                        <a href="qlUser.html">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i
-                                class="nav-link-icon fa fa-user"> Users</i></button>
+                        <a href="qlUser.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-user"> Users</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="Tickets.html" >
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                class="nav-link-icon fa fa-tickets"> Tickets</i></button>
+                        <a href="Tickets.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Tickets</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="qlDonHang.html" >
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                class="nav-link-icon fa fa-list"> Order management</i></button>
+                        <a href="qlDonHang.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
                         </a>
                     </li>
                 </ul>
@@ -68,12 +59,11 @@
                                     <img width="42" class="rounded-circle" src="img/meo1.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                    class="dropdown-menu dropdown-menu-right">
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <button type="button" tabindex="0" class="dropdown-item">Profile</button>
                                     <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">Log out</button>
+                                    <a href="logout.php"><button type="button" tabindex="0" class="dropdown-item">Log out</button></a>
                                 </div>
                             </div>
                         </div>
@@ -182,9 +172,7 @@
                                                     </div>
                                                     <div class="widget-progress-wrapper mt-1">
                                                         <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-danger" role="progressbar"
-                                                                aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 63%;"></div>
+                                                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,9 +193,7 @@
                                                     </div>
                                                     <div class="widget-progress-wrapper mt-1">
                                                         <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-success" role="progressbar"
-                                                                aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 32%;"></div>
+                                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -228,9 +214,7 @@
                                                     </div>
                                                     <div class="widget-progress-wrapper mt-1">
                                                         <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-primary" role="progressbar"
-                                                                aria-valuenow="71" aria-valuemin="0" aria-valuemax="100"
-                                                                style="width: 71%;"></div>
+                                                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
                                                         </div>
                                                     </div>
                                                 </div>

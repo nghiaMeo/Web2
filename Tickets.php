@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+require_once('libra.php');
+?>
 <html lang="en">
 
 <head>
@@ -10,7 +12,7 @@
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(54, 50, 50);">
         <div class="app-header__logo">
-            <img src="/Air/img/logo.png" alt="">
+            <img src="/img/logo.png" alt="">
         </div>
         <div class="app-header__menu">
             <span>
@@ -25,27 +27,23 @@
             <div class="app-header-left">
                 <ul class="header-menu nav">
                     <li class="btn-group nav-item">
-                        <a href="admin.html" >
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i
-                                class="nav-link-icon fa fa-home"> Home</i></button>
+                        <a href="admin.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> Home</i></button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="qlUser.html">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i
-                                class="nav-link-icon fa fa-user"> Users</i></button>
+                        <a href="qlUser.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-user"> Users</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="Tickets.html" >
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                class="nav-link-icon fa fa-tickets"> Tickets</i></button>
+                        <a href="Tickets.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Tickets</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="qlDonHang.html" >
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                class="nav-link-icon fa fa-list"> Order management</i></button>
+                        <a href="qlDonHang.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
                         </a>
                     </li>
                 </ul>
@@ -60,8 +58,7 @@
                                     <img width="42" class="rounded-circle" src="img/meo1.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                    class="dropdown-menu dropdown-menu-right">
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <button type="button" tabindex="0" class="dropdown-item">Profile</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item">Log out</button>
@@ -86,29 +83,38 @@
                             <tr>
                                 <th class="text-center">Ticket number</th>
                                 <th class="text-center">Plane name</th>
-                                <th class="text-center">Departure time</th>
-                                <th class="text-center">Arrival time</th>
                                 <th class="text-center">Departure-Destination</th>
+                                <th class="text-center">Departure time-Arrival time</th>
+                                <th class="text-center">Oneway-Round</th>
                                 <th class="text-center">Edit</th>
                                 <th class="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center text-muted">MS VE</td>
-                                <td class="text-center text-muted">Ten MAy BAy</td>
-                                <td class="text-center text-muted">Thoi gian đi</td>
-                                <td class="text-center text-muted">Thoi gian den</td>
-                                <td class="text-center text-muted">Noi di-noi den</td>
-                                <td class="text-center">
-                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-alternate"><i
-                                            class="nav-link-icon fa fa-edit"> </i></button>
-                                </td>
-                                <td class="text-center">
-                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
-                                            class="nav-link-icon fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
+                            <?php
+                            $conn = createDBConnection();
+                            $sql = "SELECT * FROM ve";
+                            $result = $conn->query($sql);
+                            while ($row = $result->fetch_assoc()) {
+                            ?>
+                                <tr>
+                                    <td class="text-center text-muted"><?= $row['MaVe'] ?></td>
+                                    <td class="text-center text-muted"><?= $row['TenMayBay'] ?></td>
+                                    <td class="text-center text-muted"><?= $row['DiemDi'] ?> <i class="nav-link-icon fa fa-angle-double-right"></i> <?= $row['DiemDen'] ?></td>
+                                    <td class="text-center text-muted"><?= $row['NgayDi'] ?> <i class="nav-link-icon fa fa-angle-double-right"></i> <?= $row['NgayDen'] ?>
+                                        <div class="widget-subheading opacity-7"><?= $row['thoigiandi'] ?> <i class="nav-link-icon fa fa-angle-double-right"> </i> <?= $row['thoigianden'] ?></div>
+                                    </td>
+                                    <td class="text-center text-muted"><?= $row['Chieu'] ?></td>
+                                    <td class="text-center">
+                                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-alternate"><i class="nav-link-icon fa fa-edit"> </i></button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="nav-link-icon fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>

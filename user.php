@@ -26,14 +26,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <script>
 
-    </script>
 </head>
 
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
-        
+        <div class="app-header__logo">
+            <img src="img/logo.png" alt="">
+        </div>
         <div class="app-header__menu">
             <span>
                 <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
@@ -80,11 +80,17 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item"><h6>User
-                                        Account</h6></button>
-                                    <button type="button" tabindex="0" class="dropdown-item"><h6>Settings</h6></button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <h6>User
+                                            Account</h6>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <h6>Settings</h6>
+                                    </button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item"><h6>Log Out</h6></button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <h6>Log Out</h6>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -93,118 +99,91 @@
             </div>
         </div>
     </div>
-    <section class="banner" id="top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="left-side">
-                        <div class="logo">
-                            <img src="img/logo.png" alt="Flight Template">
-                        </div>
-                        <div class="tabs-content">
-                            <ul class="social-links">
-                                <li><a href="">notification</a></li>
-                                <li><a href="">where to buy tickets ?</a></li>
-                                <li><a href="">Contact Us Now</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-
-                    <section id="first-tab-group" class="tabgroup">
-                        <div id="tab1">
-                            <div class="submit-form">
-                                <h4>Check availability for <em>direction</em>:</h4>
-                                <form id="form-submit" action="#" method="get">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="from">From:</label>
-                                                <select required name='from' onchange=''>
-                                                    <option value="">Select a location...</option>
-                                                    <option value="Cambodia">Cambodia</option>
-                                                    <option value="Hong Kong">Hong Kong</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Japan">Japan</option>
-                                                    <option value="Korea">Korea</option>
-                                                    <option value="Laos">Laos</option>
-                                                    <option value="Myanmar">Myanmar</option>
-                                                    <option value="Singapore">Singapore</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                    <option value="Vietnam">Vietnam</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="to">To:</label>
-                                                <select required name='to' onchange=''>
-                                                    <option value="">Select a location...</option>
-                                                    <option value="Cambodia">Cambodia</option>
-                                                    <option value="Hong Kong">Hong Kong</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Japan">Japan</option>
-                                                    <option value="Korea">Korea</option>
-                                                    <option value="Laos">Laos</option>
-                                                    <option value="Myanmar">Myanmar</option>
-                                                    <option value="Singapore">Singapore</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                    <option value="Vietnam">Vietnam</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="departure">Departure date:</label>
-                                                <input name="deparure" type="text" class="form-control date"
-                                                    id="deparure" placeholder="Select date..." required="" onchange=''>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="return">Return date:</label>
-                                                <input id="id1" name="return" type="text" class="form-control date"
-                                                    id="return" placeholder="Select date..." required="" onchange=''>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="radio-select">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                                        <label for="round">Round</label>
-                                                        <input type="radio" name="trip" id="round" value="round"
-                                                            required="required"
-                                                            onchange="return document.getElementById('id1').disabled = false">
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                                        <label for="oneway">Oneway</label>
-                                                        <input type="radio" name="trip" id="oneway" value="one-way"
-                                                            required="required"
-                                                            onchange="return document.getElementById('id1').disabled = true">
-                                                    </div>
+    <section class="main-card mb-3 card" id="top">
+        <div class="card-body">
+            <div class="col-md-6 col-md-offset-4">
+                <section id="first-tab-group" class="tabgroup">
+                    <div id="tab1">
+                        <div class="submit-form">
+                            <h4>Check availability for <em>direction</em>:</h4>
+                            <form id="form-submit" action="#" method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="from">From:</label>
+                                            <select required name='from'>
+                                                <option value="">Select a location...</option>
+                                                <option value="Cambodia">Cambodia</option>
+                                                <option value="Hong Kong">Hong Kong</option>
+                                                <option value="India">India</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="Korea">Korea</option>
+                                                <option value="Laos">Laos</option>
+                                                <option value="Myanmar">Myanmar</option>
+                                                <option value="Singapore">Singapore</option>
+                                                <option value="Thailand">Thailand</option>
+                                                <option value="Vietnam">Vietnam</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="to">To:</label>
+                                            <select required name='to'>
+                                                <option value="">Select a location...</option>
+                                                <option value="Cambodia">Cambodia</option>
+                                                <option value="Hong Kong">Hong Kong</option>
+                                                <option value="India">India</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="Korea">Korea</option>
+                                                <option value="Laos">Laos</option>
+                                                <option value="Myanmar">Myanmar</option>
+                                                <option value="Singapore">Singapore</option>
+                                                <option value="Thailand">Thailand</option>
+                                                <option value="Vietnam">Vietnam</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="departure">Departure date:</label>
+                                            <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6" >
+                                        <fieldset>
+                                            <label for="return">Return date:</label>
+                                            <input name="return" type="text" class="form-control date" id="return" placeholder="Select date..." required="">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="radio-select">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <label for="">Round</label>
+                                                    <input type="radio" name="trip" id="round" value="round" required="required" >
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <label for="oneway">Oneway</label>
+                                                    <input type="radio" name="trip" id="oneway" value="one-way" required="required" >
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <button type="submit" id="form-submit" class="btn">Order Ticket
-                                                    Now</button>
-                                            </fieldset>
-                                        </div>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     </section>
     <!-- -->
-    <div>
-        <a href="#" class="button1">CHECK TICKET</a>
-    </div>
     <section id="most-visited">
         <div class="container">
             <div class="row">
@@ -672,6 +651,7 @@
     </script>
     <script type="text/javascript" src="js/main1.js"></script>
 </body>
+
 </html>
 
 </html>

@@ -1,6 +1,8 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>Check Tickets</title>
     <link href="css/main.css" rel="stylesheet">

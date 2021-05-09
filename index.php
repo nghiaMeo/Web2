@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +8,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>CAT-PLANE</title>
-
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
@@ -29,6 +31,9 @@
 
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
+        <div class="app-header__logo">
+            <img src="img/logo.png" alt="">
+        </div>
         <div class="app-header__menu">
             <span>
                 <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
@@ -49,16 +54,16 @@
                 </div>
                 <ul class="header-menu nav">
                     <li class="nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
+                        <a href="thongtinchuyenbay.html"> <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"> FLIGHT INFORMATION </button></a>
                     </li>
                     <li class="btn-group nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
+                        <a href="service.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE </button></a>
                     </li>
                     <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button>
+                        <a href="reservationinfor.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button></a>
                     </li>
                     <li class="dropdown nav-item">
-                            <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button>
+                        <a href="tinhtrangbay.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                     </li>
                 </ul>
             </div>
@@ -68,10 +73,10 @@
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
                             <div class="btn-group">
-                                <a href="LoARe.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">LOG IN 
-                                </button></a>
-                                <a href="LoARe.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SIGN UP
-                                </button></a>
+                                <a href="SginIn.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">LOG IN
+                                    </button></a>
+                                <a href="SignUp.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SIGN UP
+                                    </button></a>
                             </div>
                         </div>
                     </div>
@@ -79,113 +84,85 @@
             </div>
         </div>
     </div>
-
-    <section class="banner" id="top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="left-side">
-                        <div class="logo">
-                            <img src="img/logo.png" alt="Flight Template">
-                        </div>
-                        <div class="tabs-content">
-                            <ul class="social-links">
-                                <li><a href="">notification</a></li>
-                                <li><a href="">where to buy tickets ?</a></li>
-                                <li><a href="">Contact Us Now</a></li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-md-5 col-md-offset-1">
-
-                    <section id="first-tab-group" class="tabgroup">
-                        <div id="tab1">
-                            <div class="submit-form">
-                                <h4>Check availability for <em>direction</em>:</h4>
-                                <form id="form-submit" action="#" method="get">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="from">From:</label>
-                                                <select required name='from' onchange=''>
-                                                    <option value="">Select a location...</option>
-                                                    <option value="Cambodia">Cambodia</option>
-                                                    <option value="Hong Kong">Hong Kong</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Japan">Japan</option>
-                                                    <option value="Korea">Korea</option>
-                                                    <option value="Laos">Laos</option>
-                                                    <option value="Myanmar">Myanmar</option>
-                                                    <option value="Singapore">Singapore</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                    <option value="Vietnam">Vietnam</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="to">To:</label>
-                                                <select required name='to' onchange=''>
-                                                    <option value="">Select a location...</option>
-                                                    <option value="Cambodia">Cambodia</option>
-                                                    <option value="Hong Kong">Hong Kong</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Japan">Japan</option>
-                                                    <option value="Korea">Korea</option>
-                                                    <option value="Laos">Laos</option>
-                                                    <option value="Myanmar">Myanmar</option>
-                                                    <option value="Singapore">Singapore</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                    <option value="Vietnam">Vietnam</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="departure">Departure date:</label>
-                                                <input name="deparure" type="text" class="form-control date"
-                                                    id="deparure" placeholder="Select date..." required="" onchange=''>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <label for="return">Return date:</label>
-                                                <input id="id1" name="return" type="text" class="form-control date"
-                                                    id="return" placeholder="Select date..." required="" onchange=''>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="radio-select">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                                        <label for="round">Round</label>
-                                                        <input type="radio" name="trip" id="round" value="round"
-                                                            required="required"
-                                                            onchange="return document.getElementById('id1').disabled = false">
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                                        <label for="oneway">Oneway</label>
-                                                        <input type="radio" name="trip" id="oneway" value="one-way"
-                                                            required="required"
-                                                            onchange="return document.getElementById('id1').disabled = true">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <fieldset>
-                                                <button type="submit" id="form-submit" class="btn">Order Ticket
-                                                    Now</button>
-                                            </fieldset>
-                                        </div>
+    <section class="main-card mb-3 card" id="top">
+        <div class="card-body">
+            <div class="col-md-6 col-md-offset-4">
+                <section id="first-tab-group" class="tabgroup">
+                    <div id="tab1">
+                        <div class="submit-form">
+                            <h4>Check availability for <em>direction</em>:</h4>
+                            <form id="form-submit" action="formticket.php" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="from">From:</label>
+                                            <select required name="origin">
+                                                <option value="">Select a location...</option>
+                                                <option value="Vietnam">Viet Nam</option>
+                                                <option value="Cambodia">Cambodia</option>
+                                                <option value="Hong Kong">Hong Kong</option>
+                                                <option value="India">India</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="Korea">Korea</option>
+                                                <option value="Laos">Laos</option>
+                                                <option value="Myanmar">Myanmar</option>
+                                                <option value="Singapore">Singapore</option>
+                                                <option value="Thailand">Thailand</option>
+                                            </select>
+                                        </fieldset>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label>To:</label>
+                                            <select required name='destination'>
+                                                <option value="">Select a location...</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="Cambodia">Cambodia</option>
+                                                <option value="Hong Kong">Hong Kong</option>
+                                                <option value="India">India</option>
+                                                <option value="Korea">Korea</option>
+                                                <option value="Laos">Laos</option>
+                                                <option value="Myanmar">Myanmar</option>
+                                                <option value="Singapore">Singapore</option>
+                                                <option value="Thailand">Thailand</option>
+                                                <option value="Vietnam">Viet Nam</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="departure"> Departure Date</label>
+                                            <input type="date" name="dep_date" class="form-control" 
+                                            id="deparure" required="" min=<?php $todays_date = date('Y-m-d');
+                                                                            echo $todays_date; ?>>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="no_of_pass"> No. of Passengers</label>
+                                            <input type="number" name="no_of_pass" placeholder="Eg. 5" class="form-control" required="">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <label for="return">Class </label>
+                                            <select required name='class'>
+                                                <option value="Economy">Economy</option>
+                                                <option value="Business">Business</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <button type="submit" name="Search" id="form-submit" class="btn">Order Ticket Now</button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     </section>
@@ -603,7 +580,7 @@
 
 
 
-    <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
     <script>
         window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
     </script>
@@ -614,27 +591,27 @@
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 
-    <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/1.1.9/js/libs/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
 
 
 
             // navigation click actions 
-            $('.scroll-link').on('click', function (event) {
+            $('.scroll-link').on('click', function(event) {
                 event.preventDefault();
                 var sectionID = $(this).attr("data-id");
                 scrollToID('#' + sectionID, 750);
             });
             // scroll to top action
-            $('.scroll-top').on('click', function (event) {
+            $('.scroll-top').on('click', function(event) {
                 event.preventDefault();
                 $('html, body').animate({
                     scrollTop: 0
                 }, 'slow');
             });
             // mobile nav toggle
-            $('#nav-toggle').on('click', function (event) {
+            $('#nav-toggle').on('click', function(event) {
                 event.preventDefault();
                 $('#main-nav').toggleClass("open");
             });
@@ -654,15 +631,11 @@
         }
         if (typeof console === "undefined") {
             console = {
-                log: function () { }
+                log: function() {}
             };
         }
     </script>
     <script type="text/javascript" src="js/main1.js"></script>
 </body>
-
-<!-- Mirrored from www.tooplate.com/templates/2093_flight/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 May 2018 10:39:55 GMT -->
-
-</html>
 
 </html>

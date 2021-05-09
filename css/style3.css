@@ -6,11 +6,20 @@
 .hero{
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url("../images/london.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url("/img/london.jpg");
     background-repeat: repeat-x;
     background-position: center;
     background-size: cover;
     position: absolute;
+}
+.form-box1{
+    width: 380px;
+    height: 500px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
 }
 .form-box{
     width: 380px;
@@ -22,7 +31,7 @@
     overflow: hidden;
 }
 .button-box{
-    width: 220px;
+    width: 100px;
     margin: 35px auto;
     position: relative;
     box-shadow: 0 0 20px 9px #ff61241f;
@@ -58,7 +67,7 @@
     border-radius: 50%;
 }
 .input-group{
-    top: 180px;
+    top: 80px;
     position: absolute;
     width: 280px;
     transition: .5s;
