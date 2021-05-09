@@ -67,7 +67,7 @@ session_start();
             $_SESSION['journey_date'] = $dep_date;
             require_once('connect.php');
             if ($class == "economy") {
-                $query = "SELECT flight_no,from_city,to_city,departure_date,departure_time,arrival_date,arrival_time,price_economy FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_economy>=? ORDER BY  departure_time";
+                $query = "SELECT * FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_economy>=? ORDER BY  departure_time";
                 $stmt = mysqli_prepare($dbc, $query);
                 mysqli_stmt_bind_param($stmt, "sssi", $origin, $destination, $dep_date, $no_of_pass);
                 mysqli_stmt_execute($stmt);
