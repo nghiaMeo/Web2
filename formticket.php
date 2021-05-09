@@ -165,12 +165,15 @@ session_start();
 
     <script>
         function checkaa() {
-            var c= document.getElementById("cmn")
-            if (!c.checked) {
-                alert("please choose ticket !");
-                return false;
+            var radios = document.getElementsByName('select_flight');
+            console.log(radios.length)
+            for (i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    return true;
+                }
             }
-            return true;
+            alert("please choose your ticket!!");
+            return false;
         }
     </script>
 </body>
