@@ -7,7 +7,6 @@ $conn = createDBConnection();
 
 <head>
     <title>Tickets</title>
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/fontAwesome.css">
@@ -88,7 +87,12 @@ $conn = createDBConnection();
                 mysqli_stmt_bind_result($stmt, $flight_no, $from_city, $to_city, $departure_date, $departure_time, $arrival_date, $arrival_time, $price_economy);
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 0) {
-                    echo "<h3>No flights are available !</h3>";
+                    echo "<h3 style=\"text-align: center;\">No flights are available !</h3>";
+                    if (isLoginedCus()) {
+                        echo "<a href=\"user.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+                    } else
+                        echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>"; 
+            
                 } else {
                     echo "<form action=\"bookticket.php\" method=\"post\">";
                     echo "<div class=\"table-responsive\">";
@@ -119,7 +123,7 @@ $conn = createDBConnection();
                     }
                     echo "</table> 
                     </div><br>
-                    <div class=\"col-md-15\" style=\"text-align: center;\">";
+                    <div class=\"col-md-15 \" style=\"text-align: center;\">";
                     if ($pageno > 1 && $total_page > 1) {
                         echo '<a href="formticket.php?Page=' . ($pageno - 1) . '">Prev</a> | ';
                     }
@@ -152,7 +156,11 @@ $conn = createDBConnection();
                 mysqli_stmt_bind_result($stmt, $flight_no, $from_city, $to_city, $departure_date, $departure_time, $arrival_date, $arrival_time, $price_business);
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 0) {
-                    echo "<h3>No flights are available !</h3>";
+                    echo "<h3 style=\"text-align: center;\">No flights are available !</h3>";
+                    if (isLoginedCus()) {
+                        echo "<a href=\"user.php\"><button style=\"margin-right: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+                    } else
+                        echo "<a href=\"index.php\"><button style=\"margin-right: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
                 } else {
                     echo "<form action=\"bookticket.php\" method=\"post\">";
                     echo "<div class=\"table-responsive\">";
@@ -196,9 +204,12 @@ $conn = createDBConnection();
         }
     } else {
         echo "<h3 style=\"text-align: center;\"> Search request not received </h3>";
+        if (isLoginedCus()) {
+            echo "<a href=\"user.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+        } else
+            echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
     }
     ?>
-
     <script>
         function checkaa() {
             var radios = document.getElementsByName('select_flight');
