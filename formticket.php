@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once('libraCus.php');
+isLoginedCus();
 ?>
 <html>
 
@@ -29,6 +30,8 @@ session_start();
         </div>
     </div>
     <?php
+    if(!isset($_REQUEST['Page']))
+        $_REQUEST['Page'] = 0;
     if (isset($_POST['Search'])) {
         $data_missing = array();
         if (empty($_POST['origin'])) {
@@ -65,9 +68,8 @@ session_start();
             $count = 1;
             $_SESSION['count'] = $count;
             $_SESSION['journey_date'] = $dep_date;
-            require_once('connect.php');
             if ($class == "economy") {
-                $query = "SELECT * FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_economy>=? ORDER BY  departure_time";
+                $query = "SELECT flight_no,from_city,to_city,departure_date,departure_time,arrival_date,arrival_time,price_economy FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_economy>=? ORDER BY  departure_time";
                 $stmt = mysqli_prepare($dbc, $query);
                 mysqli_stmt_bind_param($stmt, "sssi", $origin, $destination, $dep_date, $no_of_pass);
                 mysqli_stmt_execute($stmt);
@@ -105,7 +107,7 @@ session_start();
                     }
                     echo "</table> 
                     </div><br>";
-                    echo "<input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" onclick=\"return checkaa()\"  name=\"Select\">";
+                    echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" onclick=\"return checkaa()\"  name=\"Select\"></p>";
                     echo "</form>";
                 }
             } else if ($class = "business") {
@@ -146,7 +148,7 @@ session_start();
                                 </tr>";
                     }
                     echo "</table></div> <br>";
-                    echo "<p style=\"text-align: center;\"><input class=\"btn\" type=\"submit\" value=\"Select Flight\" name=\"Select\" onclick=\"return checkaa()\"> </p>";
+                    echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" name=\"Select\" onclick=\"return checkaa()\"> </p>";
                     echo "</form>";
                 }
             }

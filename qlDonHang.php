@@ -1,3 +1,6 @@
+<?php
+require_once('libraAd.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -26,26 +29,22 @@
                 <ul class="header-menu nav">
                     <li class="nav-item">
                         <a href="admin.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i
-                                    class="nav-link-icon fa fa-home"> Home</i></button>
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> Home</i></button>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="qlUser.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i
-                                    class="nav-link-icon fa fa-user"> Users</i></button>
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-user"> Users</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
                         <a href="Tickets.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                    class="nav-link-icon fa fa-tickets"> Tickets</i></button>
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Tickets</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
                         <a href="Tickets.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i
-                                    class="nav-link-icon fa fa-list"> Order management</i></button>
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
                         </a>
                     </li>
                 </ul>
@@ -60,8 +59,7 @@
                                     <img width="42" class="rounded-circle" src="/Air/img/meo1.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                    class="dropdown-menu dropdown-menu-right">
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <button type="button" tabindex="0" class="dropdown-item">Profile</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item">Log out</button>
@@ -99,6 +97,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            $conn = createDBConnection();
+                            $sql = "SELECT * FROM ticket_details td , payment_details pd, passengers pag , flight_details fd
+                             WHERE fd.flight_no=td.flight_no and pd.payment_id = td.payment_id and td.pnr = pag.pnr and td.booking_status="."";
+                            ?>
                             <tr>
                                 <td class="text-center text-muted">NghiaNguyen</td>
                                 <td class="text-center text-muted">NghiaNguyen</td>
@@ -110,13 +113,11 @@
                                 <td class="text-center">
                                     <button class="mr-2 btn-icon btn-icon-only btn btn-outline-alternate">
                                         <div class="btn-group">
-                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                class="p-0 btn">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
 
                                                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             </a>
-                                            <div tabindex="-1" role="menu" aria-hidden="true"
-                                                class="dropdown-menu dropdown-menu-right">
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                                 <p class="dropdown">Profile</p>
                                                 <p class="dropdown">Log out</p>
                                             </div>
@@ -124,8 +125,7 @@
                                     </button>
                                 </td>
                                 <td class="text-center">
-                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
-                                            class="nav-link-icon fa fa-trash-o"></i></button>
+                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="nav-link-icon fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                             </tr>
@@ -136,12 +136,9 @@
                 <div class="d-block text-center card-footer">
                     <nav class="" aria-label="Page navigation example" style="padding-left: 520px;">
                         <ul class="pagination">
-                            <li class="page-item "><a href="javascript:void(0);" class="page-link"
-                                    aria-label="Previous"><span aria-hidden="true">«</span><span
-                                        class="sr-only"></span></a></li>
+                            <li class="page-item "><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only"></span></a></li>
 
-                            <li class="page-item"><a href="javascript:void(0);" class="page-link"
-                                    aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only"></span></a>
+                            <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only"></span></a>
                             </li>
                         </ul>
                     </nav>

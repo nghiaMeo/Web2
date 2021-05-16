@@ -1,5 +1,5 @@
 <?php
-require_once('libra.php');
+require_once('libraAd.php');
 $loginResult = "";
 if (isset($_POST['ID_AD'])) {
     $loginResult = login($_POST['ID_AD'], $_POST['Passwd']);

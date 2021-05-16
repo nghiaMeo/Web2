@@ -1,7 +1,9 @@
+<?php
+require_once('libraCus.php');
+?>
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from www.tooplate.com/templates/2093_flight/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 May 2018 10:39:09 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -32,7 +34,7 @@
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
         <div class="app-header__logo">
-            <img src="img/logo.png" alt="">
+            <a href="user.php"></a><img src="img/logo.png" alt=""></a>
         </div>
         <div class="app-header__menu">
             <span>
@@ -45,27 +47,13 @@
         </div>
         <div class="app-header__content">
             <div class="app-header-left">
-                <div class="search-wrapper">
-                    <div class="input-holder">
-                        <input type="text" class="search-input" placeholder="Type to search">
-                        <button class="search-icon"><span></span></button>
-                    </div>
-                    <button class="close"></button>
-                </div>
                 <ul class="header-menu nav">
-                    <li class="nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION
-                            INFORMATION</button>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button>
-                    </li>
+                    
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button>
+                    <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
+                    <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                 </ul>
             </div>
             <div class="app-header-right">
@@ -78,8 +66,7 @@
                                     <img width="42" class="rounded-circle" src="img/massage-service.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                    class="dropdown-menu dropdown-menu-right">
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <button type="button" tabindex="0" class="dropdown-item">
                                         <h6>User
                                             Account</h6>
@@ -88,9 +75,13 @@
                                         <h6>Settings</h6>
                                     </button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <h6>Log Out</h6>
-                                    </button>
+                                    <?php
+                                    if (isLoginedCus()) {
+                                        echo "<a href=\"logoutCus.php\"><button type=\"button\" tabindex=\"0\" class=\"dropdown-item\">
+                                    <h6>Log Out</h6>
+                                </button></a>";
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -106,13 +97,14 @@
                     <div id="tab1">
                         <div class="submit-form">
                             <h4>Check availability for <em>direction</em>:</h4>
-                            <form id="form-submit" action="#" method="get">
+                            <form id="form-submit" action="formticket.php" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="from">From:</label>
-                                            <select required name='from'>
+                                            <select required name="origin">
                                                 <option value="">Select a location...</option>
+                                                <option value="Vietnam">Viet Nam</option>
                                                 <option value="Cambodia">Cambodia</option>
                                                 <option value="Hong Kong">Hong Kong</option>
                                                 <option value="India">India</option>
@@ -122,57 +114,52 @@
                                                 <option value="Myanmar">Myanmar</option>
                                                 <option value="Singapore">Singapore</option>
                                                 <option value="Thailand">Thailand</option>
-                                                <option value="Vietnam">Vietnam</option>
                                             </select>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <label for="to">To:</label>
-                                            <select required name='to'>
+                                            <label>To:</label>
+                                            <select required name='destination'>
                                                 <option value="">Select a location...</option>
+                                                <option value="Japan">Japan</option>
                                                 <option value="Cambodia">Cambodia</option>
                                                 <option value="Hong Kong">Hong Kong</option>
                                                 <option value="India">India</option>
-                                                <option value="Japan">Japan</option>
                                                 <option value="Korea">Korea</option>
                                                 <option value="Laos">Laos</option>
                                                 <option value="Myanmar">Myanmar</option>
                                                 <option value="Singapore">Singapore</option>
                                                 <option value="Thailand">Thailand</option>
-                                                <option value="Vietnam">Vietnam</option>
+                                                <option value="Vietnam">Viet Nam</option>
                                             </select>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <label for="departure">Departure date:</label>
-                                            <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-md-6" >
-                                        <fieldset>
-                                            <label for="return">Return date:</label>
-                                            <input name="return" type="text" class="form-control date" id="return" placeholder="Select date..." required="">
+                                            <label for="departure"> Departure Date</label>
+                                            <input type="date" name="dep_date" class="form-control" id="deparure" required="" min=<?php $todays_date = date('Y-m-d');
+                                                                                                                                    echo $todays_date; ?>>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="radio-select">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                                    <label for="">Round</label>
-                                                    <input type="radio" name="trip" id="round" value="round" required="required" >
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                                    <label for="oneway">Oneway</label>
-                                                    <input type="radio" name="trip" id="oneway" value="one-way" required="required" >
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <fieldset>
+                                            <label for="no_of_pass"> No. of Passengers</label>
+                                            <input type="number" name="no_of_pass" placeholder="Eg. 5" class="form-control" required="">
+                                        </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                            <label>Class </label>
+                                            <select required name='class'>
+                                                <option value="economy">Economy</option>
+                                                <option value="business">Business</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top: 2.5%;">
+                                        <fieldset>
+                                            <button type="submit" name="Search" id="form-submit" class="btn">Order Ticket Now</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -610,22 +597,22 @@
 
     <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             // navigation click actions 
-            $('.scroll-link').on('click', function (event) {
+            $('.scroll-link').on('click', function(event) {
                 event.preventDefault();
                 var sectionID = $(this).attr("data-id");
                 scrollToID('#' + sectionID, 750);
             });
             // scroll to top action
-            $('.scroll-top').on('click', function (event) {
+            $('.scroll-top').on('click', function(event) {
                 event.preventDefault();
                 $('html, body').animate({
                     scrollTop: 0
                 }, 'slow');
             });
             // mobile nav toggle
-            $('#nav-toggle').on('click', function (event) {
+            $('#nav-toggle').on('click', function(event) {
                 event.preventDefault();
                 $('#main-nav').toggleClass("open");
             });
@@ -645,7 +632,7 @@
         }
         if (typeof console === "undefined") {
             console = {
-                log: function () { }
+                log: function() {}
             };
         }
     </script>

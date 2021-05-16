@@ -1,6 +1,15 @@
 <?php
 session_start();
-function createDBConnection() {
+DEFINE('DB_USER', 'root');
+DEFINE('DB_PASSWORD', '');
+DEFINE('DB_HOST', 'localhost');
+DEFINE('DB_NAME', 'plane');
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+    or die('Could not connect to MySQL:' .
+        mysqli_connect_error());
+
+function createDBConnection()
+{
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -15,41 +24,43 @@ function createDBConnection() {
 
     return $conn;
 }
-function login($user, $pass)
+
+
+/// USER
+function loginCus($user, $pass)
 {
-    
+
     $conn = createDBConnection();
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT * FROM admin WHERE tkAdmin='" . "$user" . "'";
+    $sql = "SELECT * FROM customer WHERE customer_id='" . "$user" . "'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
         if ($row = $result->fetch_assoc()) {
-            if ($row['Matkhau'] == $pass) {
+            if ($row['pwd'] == $pass) {
                 // login thanh cong
-                $_SESSION['tkAdmin'] = $user;
-                return true;
-            }
-            else {
-                return "* Error password";    
+                $_SESSION['customer_id'] = $user;
+                return "Login success";
+            } else {
+                return "* Error password";
             }
         }
     } else {
-        return "* This admin was not found";
+        return "* This user was not found";
     }
     $conn->close();
 }
 
-function isLogined()
+function isLoginedCus()
 {
-    return isset($_SESSION['tkAdmin']);
+    return isset($_SESSION['customer_id']);
 }
 
-function logout()
+function logoutCus()
 {
-    unset($_SESSION['tkAdmin']);
+    unset($_SESSION['customer_id']);
 }

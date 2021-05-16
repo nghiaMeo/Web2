@@ -27,7 +27,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`Harry`@`localhost` PROCEDURE `GetFlightStatistics` (IN `j_date` DATE)  BEGIN
+PROCEDURE `GetFlightStatistics` (IN `j_date` DATE)  BEGIN
  select flight_no,departure_date,IFNULL(no_of_passengers, 0) as no_of_passengers,total_capacity from (
 select f.flight_no,f.departure_date,sum(t.no_of_passengers) as no_of_passengers,j.total_capacity 
 from flight_details f left join ticket_details t 

@@ -1,8 +1,8 @@
 <?php
-require_once('libra.php');
+require_once('libraAd.php');
 $loginResult = "";
 if (isset($_POST['admin'])) {
-    $loginResult = login($_POST['admin'], $_POST['Passwd']);
+    $loginResult = loginAdmin($_POST['admin'], $_POST['Passwd']);
     
 }
 ?>
@@ -30,7 +30,7 @@ if (isset($_POST['admin'])) {
                 <input type="password" class="input-field" placeholder="Enter Password" required name="Passwd" value="">
                 <input type="submit" class="submit-btn" name="btnSubmit" value="Login"></input>
                 <?php
-                    if(isLogined()){
+                    if(isLoginAd()){
 
                     }
                     if($loginResult == 1){

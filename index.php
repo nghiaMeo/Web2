@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once('libraCus.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,47 +24,20 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <script>
-
-    </script>
 </head>
 
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
         <div class="app-header__logo">
-            <img src="img/logo.png" alt="">
-        </div>
-        <div class="app-header__menu">
-            <span>
-                <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                    <span class="btn-icon-wrapper">
-                        <i class="fa fa-ellipsis-v fa-w-6"></i>
-                    </span>
-                </button>
-            </span>
+            <a href="index.php"><img src="img/logo.png" alt=""></a>
         </div>
         <div class="app-header__content">
             <div class="app-header-left">
-                <div class="search-wrapper">
-                    <div class="input-holder">
-                        <input type="text" class="search-input" placeholder="Type to search">
-                        <button class="search-icon"><span></span></button>
-                    </div>
-                    <button class="close"></button>
-                </div>
                 <ul class="header-menu nav">
-                    <li class="nav-item">
-                        <a href="thongtinchuyenbay.html"> <button class="mb-2 mr-2 btn-transition btn btn-outline-warning"> FLIGHT INFORMATION </button></a>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <a href="service.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE </button></a>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <a href="reservationinfor.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button></a>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <a href="tinhtrangbay.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
-                    </li>
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button>
+                    <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                 </ul>
             </div>
             <div class="app-header-right">
@@ -132,9 +105,8 @@ session_start();
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="departure"> Departure Date</label>
-                                            <input type="date" name="dep_date" class="form-control" 
-                                            id="deparure" required="" min=<?php $todays_date = date('Y-m-d');
-                                                                            echo $todays_date; ?>>
+                                            <input type="date" name="dep_date" class="form-control" id="deparure" required="" min=<?php $todays_date = date('Y-m-d');
+                                                                                                                                    echo $todays_date; ?>>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
@@ -145,15 +117,14 @@ session_start();
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <label for="return">Class </label>
+                                            <label>Class </label>
                                             <select required name='class'>
-                                                <option value="Economy">Economy</option>
-                                                <option value="Business">Business</option>
+                                                <option value="economy">Economy</option>
+                                                <option value="business">Business</option>
                                             </select>
                                         </fieldset>
                                     </div>
-
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="margin-top: 2.5%;">
                                         <fieldset>
                                             <button type="submit" name="Search" id="form-submit" class="btn">Order Ticket Now</button>
                                         </fieldset>

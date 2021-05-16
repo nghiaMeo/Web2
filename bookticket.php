@@ -1,5 +1,9 @@
 <?php
-session_start();
+require_once('libraCus.php');
+$loginResult = "";
+if (isset($_POST['username'])) {
+    $loginResult = loginCus($_POST['username'], $_POST['password']);
+}
 ?>
 <html>
 
@@ -36,7 +40,6 @@ session_start();
                     $no_of_pass = $_SESSION['no_of_pass'];
                     $class = $_SESSION['class'];
                     $count = $_SESSION['count'];
-
                     $flight_no = $_POST['select_flight'];
                     $_SESSION['flight_no'] = $flight_no;
                     ?>
@@ -50,7 +53,6 @@ session_start();
                             echo "<td >Passenger's Age</td>";
                             echo "<td >Passenger's Gender</td>";
                             echo "<td >Passenger's Inflight Meal</td>";
-                            echo "<td >Passenger's Frequent Flier ID (if applicable)</td>";
                             echo "</tr>";
                             echo "<tr>";
                             echo "<td ><input class=\"form-control\" type=\"text\" name=\"pass_name[]\" required></td>";
@@ -68,13 +70,12 @@ session_start();
                             echo "<option value=\"no\">No</option>";
                             echo "</select>";
                             echo "</td>";
-                            echo "<td ><input class=\"form-control type=\"text\" name=\"pass_ff_id[]\"></td>";
                             echo "</tr>";
                             echo "</table>";
                             echo "<br><hr>";
                             $count = $count + 1;
                         }
-                        echo "<br><h2>ENTER TRAVEL DETAILS</h2>";
+                        echo "<br><h2 style=\"text-align: center;\">ENTER TRAVEL DETAILS</h2>";
                         echo "<table cellpadding=\"5px\">";
                         echo "<tr>";
                         echo "<td >Do you want access to our Premium Lounge?</td>";
