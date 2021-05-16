@@ -1,6 +1,7 @@
 <?php
 require_once('libraCus.php');
 isLoginedCus();
+$conn = createDBConnection();
 ?>
 <html>
 
@@ -30,8 +31,19 @@ isLoginedCus();
         </div>
     </div>
     <?php
-    if(!isset($_REQUEST['Page']))
-        $_REQUEST['Page'] = 0;
+    if (isset($_GET['Page'])) {
+        $pageno = $_GET['Page'];
+    } else {
+        $pageno = 1;
+    }
+    $number = 3;
+    $offset = ($pageno - 1) * $number;
+    $total_page_sql = "SELECT COUNT(*) FROM Flight_Details";
+    $reslut = mysqli_query($conn, $total_page_sql);
+    $total_rows = mysqli_fetch_array($reslut)[0];
+    $total_page = ceil($total_rows / $number);
+    $sql = "SELECT * FROM Flight_Details LIMIT $offset, $number";
+    $res_data = mysqli_query($conn, $sql);
     if (isset($_POST['Search'])) {
         $data_missing = array();
         if (empty($_POST['origin'])) {
@@ -92,7 +104,7 @@ isLoginedCus();
 							<th class=\"text-center\">Price(Economy)</th>
 							<th class=\"text-center\">Select</th>
                         </tr>";
-                    while (mysqli_stmt_fetch($stmt)) {
+                    while (mysqli_stmt_fetch($stmt) && $row = mysqli_fetch_array($res_data)) {
                         echo "<tr>
         						<td class=\"text-center text-muted\">" . $flight_no . "</td>
         						<td class=\"text-center text-muted\">" . $from_city . "</td>
@@ -106,9 +118,31 @@ isLoginedCus();
         						</tr>";
                     }
                     echo "</table> 
-                    </div><br>";
+                    </div><br>
+                    <div class=\"col-md-15\" style=\"text-align: center;\">";
+                    if ($pageno > 1 && $total_page > 1) {
+                        echo '<a href="formticket.php?Page=' . ($pageno - 1) . '">Prev</a> | ';
+                    }
+
+                    // Lặp khoảng giữa
+                    for ($i = 1; $i <= $total_page; $i++) {
+                        // Nếu là trang hiện tại thì hiển thị thẻ span
+                        // ngược lại hiển thị thẻ a
+                        if ($i == $pageno) {
+                            echo '<span>' . $i . '</span> | ';
+                        } else {
+                            echo '<a href="formticket.php?Page=' . $i . '">' . $i . '</a> | ';
+                        }
+                    }
+
+                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+                    if ($pageno < $total_page && $total_page > 1) {
+                        echo '<a href="formticket.php?Page=' . ($pageno + 1) . '">Next</a> | ';
+                    }
+
                     echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" onclick=\"return checkaa()\"  name=\"Select\"></p>";
-                    echo "</form>";
+                    echo "</form>
+                    </div>";
                 }
             } else if ($class = "business") {
                 $query = "SELECT flight_no,from_city,to_city,departure_date,departure_time,arrival_date,arrival_time,price_business FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_business>=? ORDER BY  departure_time";
@@ -134,7 +168,7 @@ isLoginedCus();
 							<th class=\"text-center\">Price(Business)</th>
 							<th class=\"text-center\">Select</th>
 						</tr>";
-                    while (mysqli_stmt_fetch($stmt)) {
+                    while (mysqli_stmt_fetch($stmt) && $row = mysqli_fetch_array($res_data)) {
                         echo "<tr>
         						<td class=\"text-center text-muted\">" . $flight_no . "</td>
         						<td class=\"text-center text-muted\">" . $from_city . "</td>
