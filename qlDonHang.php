@@ -73,18 +73,13 @@ require_once('libraAd.php');
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-
                     <a href="admin.php">
                         <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> Home</i></button>
                     </a>
-
-
                     <a href="flight_management.php">
-                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
                     </a>
-
-
-                    <a href="Tickets.php">
+                    <a href="qlDonhang.php">
                         <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Management Orders</i></button>
                     </a>
 
@@ -114,7 +109,7 @@ require_once('libraAd.php');
 
                 <div class="card-header">
                     <h4>Management Orders</h4>
-                    
+
                 </div>
                 <div class="table-responsive">
                     <table class="align-middle mb-0 table table-borderless table-striped table-hover">
