@@ -60,7 +60,7 @@ require_once('libraCus.php');
                                 <div class="btn-group">
                                     <?php
                                     if (isLoginedCus()) {
-                                        echo "<a href=\"SginIn.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">LOGOUT
+                                        echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">LOGOUT
                                             </button></a>";
                                     }
                                     ?>

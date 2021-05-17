@@ -3,7 +3,7 @@
 
 <?php
 
-if (islogin()) {
+if (isLoginedCus()) {
     if (!isset($_REQUEST['Page']))
         $_REQUEST['Page'] = 0;
     require_once('header.php');

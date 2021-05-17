@@ -2,11 +2,15 @@
 require_once('libraCus.php');
 isLoginedCus();
 $conn = createDBConnection();
+if (!isset($_REQUEST['Page']))
+    $_REQUEST['Page'] = 0;
+require_once('formticket.php');
 ?>
 <html>
 
 <head>
     <title>Tickets</title>
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/fontAwesome.css">
@@ -30,74 +34,70 @@ $conn = createDBConnection();
         </div>
     </div>
     <?php
-    if (isset($_GET['Page'])) {
-        $pageno = $_GET['Page'];
-    } else {
-        $pageno = 1;
-    }
-    $number = 3;
-    $offset = ($pageno - 1) * $number;
-    $total_page_sql = "SELECT COUNT(*) FROM Flight_Details";
-    $reslut = mysqli_query($conn, $total_page_sql);
-    $total_rows = mysqli_fetch_array($reslut)[0];
-    $total_page = ceil($total_rows / $number);
-    $sql = "SELECT * FROM Flight_Details LIMIT $offset, $number";
-    $res_data = mysqli_query($conn, $sql);
-    if (isset($_POST['Search'])) {
-        $data_missing = array();
-        if (empty($_POST['origin'])) {
-            $data_missing[] = 'Origin';
-        } else {
-            $origin = $_POST['origin'];
+    function getSql()
+    {
+        if ($_REQUEST['from'] != '' && $_REQUEST['to'] != '' && $_REQUEST['dep_date'] != '') {
+            return sprintf(
+                "SELECT * FROM Flight_Details WHERE from_city='%s' and to_city='%s' and departure_date= '%s' and seats_economy>=%s ORDER BY  departure_time",
+                $_REQUEST['from'],
+                $_REQUEST['to'],
+                $_REQUEST['dep_date'],
+                $_REQUEST['no_of_pass']
+            );
         }
-        if (empty($_POST['destination'])) {
+    }
+    $sql =  getSql();
+    $sql = $sql . " LIMIT " . ($_REQUEST['Page'] * 3) . ",3";
+    $result = $conn->query($sql);
+    if (isset($_REQUEST['Search'])) {
+        $data_missing = array();
+        if (empty($_REQUEST['from'])) {
+            $data_missing[] = 'from';
+        } else {
+            $origin = $_REQUEST['from'];
+        }
+        if (empty($_REQUEST['destination'])) {
             $data_missing[] = 'Destination';
         } else {
-            $destination = $_POST['destination'];
+            $destination = $_REQUEST['destination'];
         }
 
-        if (empty($_POST['dep_date'])) {
+        if (empty($_REQUEST['dep_date'])) {
             $data_missing[] = 'Departure Date';
         } else {
-            $dep_date = trim($_POST['dep_date']);
+            $dep_date = trim($_REQUEST['dep_date']);
         }
-        if (empty($_POST['no_of_pass'])) {
+        if (empty($_REQUEST['no_of_pass'])) {
             $data_missing[] = 'No. of Passengers';
         } else {
-            $no_of_pass = trim($_POST['no_of_pass']);
+            $no_of_pass = trim($_REQUEST['no_of_pass']);
         }
 
-        if (empty($_POST['class'])) {
+        if (empty($_REQUEST['class'])) {
             $data_missing[] = 'Class';
         } else {
-            $class = trim($_POST['class']);
+            $class = trim($_REQUEST['class']);
         }
 
-        if (empty($data_missing)) {
+        if (!empty($data_missing)) {
             $_SESSION['no_of_pass'] = $no_of_pass;
             $_SESSION['class'] = $class;
             $count = 1;
             $_SESSION['count'] = $count;
             $_SESSION['journey_date'] = $dep_date;
-            if ($class == "economy") {
-                $query = "SELECT flight_no,from_city,to_city,departure_date,departure_time,arrival_date,arrival_time,price_economy FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_economy>=? ORDER BY  departure_time";
-                $stmt = mysqli_prepare($dbc, $query);
-                mysqli_stmt_bind_param($stmt, "sssi", $origin, $destination, $dep_date, $no_of_pass);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $flight_no, $from_city, $to_city, $departure_date, $departure_time, $arrival_date, $arrival_time, $price_economy);
-                mysqli_stmt_store_result($stmt);
-                if (mysqli_stmt_num_rows($stmt) == 0) {
-                    echo "<h3 style=\"text-align: center;\">No flights are available !</h3>";
-                    if (isLoginedCus()) {
-                        echo "<a href=\"user.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
-                    } else
-                        echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>"; 
-            
-                } else {
-                    echo "<form action=\"bookticket.php\" method=\"post\">";
-                    echo "<div class=\"table-responsive\">";
-                    echo "<table class=\"align-middle mb-0 table table-borderless table-striped table-hover\">";
-                    echo "<tr>
+        }
+        if ($class == "economy") {
+            if ($result->num_rows == 0) {
+                echo "<h3 style=\"text-align: center;\">No flights are available !</h3>";
+                if (isLoginedCus()) {
+                    echo "<a href=\"user.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+                } else
+                    echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+            } else {
+                echo "<form action=\"bookticket.php\" method=\"post\">";
+                echo "<div class=\"table-responsive\">";
+                echo "<table class=\"align-middle mb-0 table table-borderless table-striped table-hover\">";
+                echo "<tr>
                             <th class=\"text-center\">Flight No.</th>
 							<th class=\"text-center\">Origin</th>
 							<th class=\"text-center\">Destination</th>
@@ -108,64 +108,67 @@ $conn = createDBConnection();
 							<th class=\"text-center\">Price(Economy)</th>
 							<th class=\"text-center\">Select</th>
                         </tr>";
-                    while (mysqli_stmt_fetch($stmt) && $row = mysqli_fetch_array($res_data)) {
-                        echo "<tr>
-        						<td class=\"text-center text-muted\">" . $flight_no . "</td>
-        						<td class=\"text-center text-muted\">" . $from_city . "</td>
-								<td class=\"text-center text-muted\">" . $to_city . "</td>
-								<td class=\"text-center text-muted\">" . $departure_date . "</td>
-								<td class=\"text-center text-muted\">" . $departure_time . "</td>
-								<td class=\"text-center text-muted\">" . $arrival_date . "</td>
-								<td class=\"text-center text-muted\">" . $arrival_time . "</td>
-                                <td class=\"text-center text-muted\">" . $price_economy . "</td>
-								<td class=\"text-center text-muted\"><input id=\"cmn\" type=\"radio\" name=\"select_flight\" value=\"" . $flight_no . "\"></td>
-        						</tr>";
-                    }
-                    echo "</table> 
-                    </div><br>
-                    <div class=\"col-md-15 \" style=\"text-align: center;\">";
-                    if ($pageno > 1 && $total_page > 1) {
-                        echo '<a href="formticket.php?Page=' . ($pageno - 1) . '">Prev</a> | ';
-                    }
-
-                    // Lặp khoảng giữa
-                    for ($i = 1; $i <= $total_page; $i++) {
-                        // Nếu là trang hiện tại thì hiển thị thẻ span
-                        // ngược lại hiển thị thẻ a
-                        if ($i == $pageno) {
-                            echo '<span>' . $i . '</span> | ';
-                        } else {
-                            echo '<a href="formticket.php?Page=' . $i . '">' . $i . '</a> | ';
-                        }
-                    }
-
-                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
-                    if ($pageno < $total_page && $total_page > 1) {
-                        echo '<a href="formticket.php?Page=' . ($pageno + 1) . '">Next</a> | ';
-                    }
-
-                    echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" onclick=\"return checkaa()\"  name=\"Select\"></p>";
-                    echo "</form>
-                    </div>";
-                }
-            } else if ($class = "business") {
-                $query = "SELECT flight_no,from_city,to_city,departure_date,departure_time,arrival_date,arrival_time,price_business FROM Flight_Details where from_city=? and to_city=? and departure_date=? and seats_business>=? ORDER BY  departure_time";
-                $stmt = mysqli_prepare($dbc, $query);
-                mysqli_stmt_bind_param($stmt, "sssi", $origin, $destination, $dep_date, $no_of_pass);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $flight_no, $from_city, $to_city, $departure_date, $departure_time, $arrival_date, $arrival_time, $price_business);
-                mysqli_stmt_store_result($stmt);
-                if (mysqli_stmt_num_rows($stmt) == 0) {
-                    echo "<h3 style=\"text-align: center;\">No flights are available !</h3>";
-                    if (isLoginedCus()) {
-                        echo "<a href=\"user.php\"><button style=\"margin-right: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
-                    } else
-                        echo "<a href=\"index.php\"><button style=\"margin-right: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
-                } else {
-                    echo "<form action=\"bookticket.php\" method=\"post\">";
-                    echo "<div class=\"table-responsive\">";
-                    echo "<table class=\"align-middle mb-0 table table-borderless table-striped table-hover\">";
+                while ($row = $result->fetch_assoc()) {
                     echo "<tr>
+                <td class=\"text-center text-muted\">" . $row['flight_no'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['from_city'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['to_city'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['departure_date'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['departure_time'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['arrival_date'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['arrival_time'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['price_economy'] . "</td>
+                <td class=\"text-center text-muted\"><input id=\"cmn\" type=\"radio\" name=\"select_flight\" required value=\"" . $row['flight_no'] . "\"></td>
+                </tr>";
+                }
+                echo "</table> 
+            </div><br>
+            <div class=\"col-md-15 \" style=\"text-align: center;\">";
+    ?>
+                        <a href="#" class="prev-page">
+                            <i class="fa fa-angle-left">
+                            </i>
+                        </a>
+                        <?php
+                        $sql = getSql();                       
+                        $result = $conn->query($sql);
+                        $row = $result->num_rows;
+                        $pages = $row % 10 == 0 ? intval($row / 10) : intval($row / 10) + 1;
+                        for ($i = 0; $i < $pages; $i++) {
+                            $search = sprintf("Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search="
+                            ,$i,$_REQUEST['from'],
+                            $_REQUEST['to'],
+                            $_REQUEST['dep_date'],
+                            $_REQUEST['no_of_pass'] ,$class);
+                        ?>
+                            <a href="formticket.php?<?= $search ?>" class="active">
+                                <?= ($i + 1) ?>
+                            </a>
+                        <?php
+                        }
+                        ?>
+                        <a href="#" class="next-page">
+                            <i class="fa fa-angle-right">
+                            </i>
+                        </a>
+
+    <?php
+                echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\"   name=\"Select\"></p>";
+                echo "</form>
+            </div>";
+            }
+        } else if ($class = "business") {
+            if ($result->num_rows == 0) {
+                echo "<h3 style=\"text-align: center;\">No flights are available !</h3>";
+                if (isLoginedCus()) {
+                    echo "<a href=\"user.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+                } else
+                    echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+            } else {
+                echo "<form action=\"bookticket.php\" method=\"post\">";
+                echo "<div class=\"table-responsive\">";
+                echo "<table class=\"align-middle mb-0 table table-borderless table-striped table-hover\">";
+                echo "<tr>
                             <th class=\"text-center\">Flight No.</th>
 							<th class=\"text-center\">From</th>
 							<th class=\"text-center\">To</th>
@@ -176,30 +179,55 @@ $conn = createDBConnection();
 							<th class=\"text-center\">Price(Business)</th>
 							<th class=\"text-center\">Select</th>
 						</tr>";
-                    while (mysqli_stmt_fetch($stmt) && $row = mysqli_fetch_array($res_data)) {
-                        echo "<tr>
-        						<td class=\"text-center text-muted\">" . $flight_no . "</td>
-        						<td class=\"text-center text-muted\">" . $from_city . "</td>
-								<td class=\"text-center text-muted\">" . $to_city . "</td>
-								<td class=\"text-center text-muted\">" . $departure_date . "</td>
-								<td class=\"text-center text-muted\">" . $departure_time . "</td>
-								<td class=\"text-center text-muted\">" . $arrival_date . "</td>
-								<td class=\"text-center text-muted\">" . $arrival_time . "</td>
-                                <td class=\"text-center text-muted\">" . $price_business . "</td>
-								<td class=\"text-center text-muted\"><input id=\"cmn\" type=\"radio\" name=\"select_flight\" value=\"" . $flight_no . "\"></td>
-                                </tr>";
-                    }
-                    echo "</table></div> <br>";
-                    echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" name=\"Select\" onclick=\"return checkaa()\"> </p>";
-                    echo "</form>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>
+                <td class=\"text-center text-muted\">" . $row['flight_no'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['from_city'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['to_city'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['departure_date'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['departure_time'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['arrival_date'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['arrival_time'] . "</td>
+                <td class=\"text-center text-muted\">" . $row['price_business']  . "</td>
+				<td class=\"text-center text-muted\"><input id=\"cmn\" type=\"radio\" name=\"select_flight\" value=\"" . $row['flight_no'] . "\" required ></td>
+                </tr>";
                 }
-            }
-            mysqli_stmt_close($stmt);
-            mysqli_close($dbc);
-        } else {
-            echo "The following data fields were empty! <br>";
-            foreach ($data_missing as $missing) {
-                echo $missing . "<br>";
+
+                echo "</table></div> <br>
+                <div class=\"col-md-15 \" style=\"text-align: center;\">
+                ";
+                ?>
+                <a href="#" class="prev-page">
+                    <i class="fa fa-angle-left">
+                    </i>
+                </a>
+                <?php
+                $sql = getSql();                       
+                $result = $conn->query($sql);
+                $row = $result->num_rows;
+                $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
+                for ($i = 0; $i < $pages; $i++) {
+                    $search = sprintf("Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search="
+                    ,$i,$_REQUEST['from'],
+                    $_REQUEST['to'],
+                    $_REQUEST['dep_date'],
+                    $_REQUEST['no_of_pass'] ,$class);
+                ?>
+                    <a href="formticket.php?<?= $search ?>" class="active">
+                        <?= ($i + 1) ?>
+                    </a>
+                <?php
+                }
+                ?>
+                <a href="#" class="next-page">
+                    <i class="fa fa-angle-right">
+                    </i>
+                </a>
+
+<?php
+                echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" name=\"Select\"> </p>";
+                echo "</form>
+                </div> ";
             }
         }
     } else {

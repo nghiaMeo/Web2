@@ -22,6 +22,7 @@ $pnr = $_REQUEST["pnr"];
       transition-duration: 0.4s;
       cursor: pointer;
     }
+
     .button1 {
       background-color: rgb(255, 153, 0);
       border: none;
@@ -35,6 +36,7 @@ $pnr = $_REQUEST["pnr"];
       transition-duration: 0.4s;
       cursor: pointer;
     }
+
     .button2 {
       background-color: white;
       color: black;
@@ -45,6 +47,7 @@ $pnr = $_REQUEST["pnr"];
       background-color: rgb(255, 0, 0);
       color: white;
     }
+
     .button3 {
       background-color: white;
       color: black;
@@ -199,8 +202,18 @@ $result = mysqli_query($con, "SELECT * FROM passengers WHERE pnr='" . $stname . 
   ?>
   <br>
   <h3 style="text-align: center;">
-    <button type="submit" id="print" class="button button2" size="50" value="Print" onclick="printpage();">PRINT</button>
-    <a href="checkticket.php"><button class="button1 button3">CHECK OTHER TICKKET</button></a>
+    <?php
+    if ($booking_status == "CANCELED") {
+    ?>
+      <a href="checkticket.php"><button class="button1 button3">CHECK OTHER TICKKET</button></a>
+    <?php
+    } else {
+    ?>
+      <button type="submit" id="print" class="button button2" size="50" value="Print" onclick="printpage();">PRINT</button>
+      <br><a href="checkticket.php"><button class="button1 button3">CHECK OTHER TICKKET</button></a>
+    <?php
+    }
+    ?>
     <br>
 
   </h3>

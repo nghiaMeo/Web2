@@ -48,7 +48,7 @@ require_once('libraCus.php');
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    
+
                     <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
                     <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
                     <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button>
@@ -61,25 +61,12 @@ require_once('libraCus.php');
                     <div class="widget-content p-0"></div>
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            <div class="btn-group">
-                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="img/massage-service.jpg" alt="">
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <h6>User
-                                            Account</h6>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <h6>Settings</h6>
-                                    </button>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
+                            <div class="widget-content-left">
+                                <div class="btn-group">
                                     <?php
                                     if (isLoginedCus()) {
-                                        echo "<a href=\"logoutCus.php\"><button type=\"button\" tabindex=\"0\" class=\"dropdown-item\">
-                                    <h6>Log Out</h6>
-                                </button></a>";
+                                        echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">LOGOUT
+                                            </button></a>";
                                     }
                                     ?>
                                 </div>
