@@ -1,6 +1,6 @@
 <?php
 require('libraAd.php');
-logout();
+logoutAd();
 header('Location: LoginAd.php');
 exit;
 ?>

@@ -3,6 +3,7 @@ require_once('libraAd.php');
 if (!isset($_REQUEST['Page']))
     $_REQUEST['Page'] = 0;
 ?>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -60,7 +61,7 @@ if (!isset($_REQUEST['Page']))
 <body>
     <div class="app-header header-shadow" style="background-color:rgb(54, 50, 50);">
         <div class="app-header__logo">
-            <img src="/img/logo.png" alt="">
+            <img src="img/logo.png" alt="">
         </div>
         <div class="app-header__menu">
             <span>
@@ -74,21 +75,15 @@ if (!isset($_REQUEST['Page']))
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    <li class="btn-group nav-item">
-                        <a href="admin.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> Home</i></button>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <a href="flight_management.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Tickets</i></button>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <a href="qlDonHang.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
-                        </a>
-                    </li>
+                    <a href="admin.php">
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> Home</i></button>
+                    </a>
+                    <a href="flight_management.php">
+                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
+                    </a>
+                    <a href="qlDonHang.php">
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
+                    </a>
                 </ul>
             </div>
             <div class="app-header-right">
@@ -96,17 +91,13 @@ if (!isset($_REQUEST['Page']))
                     <div class="widget-content p-0"></div>
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            <div class="btn-group">
-                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="img/meo1.jpg" alt="">
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">Profile</button>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item">Log out</button>
-                                </div>
-                            </div>
+                            <?php
+                            if (isLoginAd()) {
+                            ?>
+                                <a href="LogoutAd.php"><button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-sign-out">LOGOUT</i></button></a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -246,11 +237,11 @@ if (!isset($_REQUEST['Page']))
                         }
                         $search = isset($_REQUEST['from']) ? sprintf(
                             "?Page=%s&dep_date=%s&from=%s&to=%s&Search=",
-                            ($_REQUEST['Page'] < $page-1) ? $_REQUEST['Page'] + 1 : $_REQUEST['Page'],
+                            ($_REQUEST['Page'] < $page - 1) ? $_REQUEST['Page'] + 1 : $_REQUEST['Page'],
                             $_REQUEST['dep_date'],
                             $_REQUEST['from'],
                             $_REQUEST['to']
-                        ) : '?Page=' . (($_REQUEST['Page'] < $page-1) ? $_REQUEST['Page'] + 1 : $_REQUEST['Page']);
+                        ) : '?Page=' . (($_REQUEST['Page'] < $page - 1) ? $_REQUEST['Page'] + 1 : $_REQUEST['Page']);
                         ?>
                         <li><a href="flight_management.php<?= $search ?>">Next</a></li>
                     </ul>

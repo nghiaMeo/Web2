@@ -30,13 +30,26 @@ if (isset($_REQUEST["u_sub"])) {
 
 <head>
     <title>Check Tickets</title>
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/fontAwesome.css" rel="stylesheet">
+    <link rel="apple-touch-icon" href="apple-touch-icon.html">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/hero-slider.css">
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="css/tooplate-style.css">
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="Shortcut Icon" href="img/logo-i.png" type="img/x-icon" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 
 <body>
 
-    <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
+    <div class="app-header header-shadow" style="background-color:rgb(54, 50, 50);">
         <?php
         if (isLoginedCus()) {
             echo "<div class=\"app-header__logo\">
@@ -60,19 +73,15 @@ if (isset($_REQUEST["u_sub"])) {
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    <li class="nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION
-                            INFORMATION</button>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button>
-                    </li>
+                <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
+                    <?php
+                    if (isLoginedCus()) {
+                    ?>
+                    <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
+
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
             <?php
@@ -104,7 +113,7 @@ if (isset($_REQUEST["u_sub"])) {
                                     <div class="btn-group">
                                         <?php
                                         if (isLoginedCus()) {
-                                            echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">LOGOUT
+                                            echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\"><i class=\"nav-link-icon fa fa-sign-out\">LOGOUT</i>
                                             </button></a>";
                                         }
                                         ?>

@@ -32,21 +32,12 @@ if (isset($_POST['ID_AD'])) {
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    <li class="nav-item">
-                        <a href="qlUser.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-user"> Users</i></button>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <a href="flight_management.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Flights Management</i></button>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <a href="qlDonHang.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
-                        </a>
-                    </li>
+                    <a href="flight_management.php">
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
+                    </a>
+                    <a href="qlDonHang.php">
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
+                    </a>
                 </ul>
             </div>
             <div class="app-header-right">
@@ -54,18 +45,7 @@ if (isset($_POST['ID_AD'])) {
                     <div class="widget-content p-0"></div>
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            <div class="btn-group">
-                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="img/meo1.jpg" alt="">
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">Profile</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                    <a href="logout.php"><button type="button" tabindex="0" class="dropdown-item">Log out</button></a>
-                                </div>
-                            </div>
+                            <a href="LogoutAd.php"><button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning">LOGOUT</button></a>
                         </div>
                     </div>
                 </div>

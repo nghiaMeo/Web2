@@ -27,16 +27,13 @@ require_once('libraCus.php');
 </head>
 
 <body>
-    <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
+    <div class="app-header header-shadow" style="background-color:rgb(54, 50, 50);">
         <div class="app-header__logo">
             <a href="index.php"><img src="img/logo.png" alt=""></a>
         </div>
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
-                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
-                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION INFORMATION</button>
                     <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                 </ul>
             </div>

@@ -1,7 +1,8 @@
 <?php
 require_once('libraCus.php');
 ?>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
     <title>
@@ -9,10 +10,11 @@ require_once('libraCus.php');
     </title>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/fontAwesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
 <body>
 
-    <div class="app-header header-shadow" style="background-color:rgb(245, 235, 235);">
+    <div class="app-header header-shadow" style="background-color:rgb(54, 50, 50);">
         <?php
         if (isLoginedCus()) {
             echo "<div class=\"app-header__logo\">
@@ -36,19 +38,15 @@ require_once('libraCus.php');
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    <li class="nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">FLIGHT INFORMATION</button>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">SERVICE</button>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION
-                            INFORMATION</button>
-                    </li>
-                    <li class="dropdown nav-item">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button>
-                    </li>
+                    <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
+                    <?php
+                    if (isLoginedCus()) {
+                    ?>
+                        <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
+
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
             <div class="app-header-right">
@@ -60,7 +58,7 @@ require_once('libraCus.php');
                                 <div class="btn-group">
                                     <?php
                                     if (isLoginedCus()) {
-                                        echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">LOGOUT
+                                        echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\"><i class=\"nav-link-icon fa fa-sign-out\">LOGOUT</i>
                                             </button></a>";
                                     }
                                     ?>
