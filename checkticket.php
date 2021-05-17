@@ -30,21 +30,8 @@ if (isset($_REQUEST["u_sub"])) {
 
 <head>
     <title>Check Tickets</title>
-    <link rel="apple-touch-icon" href="apple-touch-icon.html">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/fontAwesome.css">
-    <link rel="stylesheet" href="css/hero-slider.css">
-    <link rel="stylesheet" href="css/owl-carousel.css">
-    <link rel="stylesheet" href="css/datepicker.css">
-    <link rel="stylesheet" href="css/tooplate-style.css">
-    <link rel="stylesheet" href="css/my.css">
-    <link rel="Shortcut Icon" href="img/logo-i.png" type="img/x-icon" />
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/fontAwesome.css" rel="stylesheet">
 </head>
 
 <body>
@@ -73,11 +60,11 @@ if (isset($_REQUEST["u_sub"])) {
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
+                    <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button>
                     <?php
                     if (isLoginedCus()) {
                     ?>
-                    <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
+                        <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
 
                     <?php
                     }
