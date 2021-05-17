@@ -50,7 +50,7 @@ if (isset($_POST['username'])) {
 
 <body>
 	<div style="margin-left: 25%;" class="container">
-		<form action="ticketsuc.php" method="post">
+		<form action="paydetailform.php" method="post">
 			<h2 style="margin-left: 130px">THE PAYMENT DETAILS</h2>
 			<h3 style="margin-left: 190px"><u>Payment Summary</u></h3>
 			<br>

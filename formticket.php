@@ -133,7 +133,7 @@ require_once('formticket.php');
                         $sql = getSql();                       
                         $result = $conn->query($sql);
                         $row = $result->num_rows;
-                        $pages = $row % 10 == 0 ? intval($row / 10) : intval($row / 10) + 1;
+                        $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
                         for ($i = 0; $i < $pages; $i++) {
                             $search = sprintf("Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search="
                             ,$i,$_REQUEST['from'],

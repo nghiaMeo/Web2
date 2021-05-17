@@ -167,15 +167,7 @@ $result = mysqli_query($con, "SELECT * FROM passengers WHERE pnr='" . $stname . 
       <tr style="background-color: rgb(51, 51, 204); color: white;">
         <th colspan="8" style="text-align: left;">3.Flight information</th>
       </tr>
-      <tr>
-        <td>
-          <?php
 
-          $result1 = mysqli_query($con, "SELECT * FROM passengers where pnr='" . $stname . "'");
-          $row1 = mysqli_fetch_array($result1);
-          ?>
-        </td>
-      </tr>
       <tr style="background-color: rgb(204, 153, 0); color: white;">
         <td>Passenger No</td>
         <td>Name</td>
