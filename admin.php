@@ -38,8 +38,8 @@ if (isset($_POST['ID_AD'])) {
                         </a>
                     </li>
                     <li class="btn-group nav-item">
-                        <a href="Tickets.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Tickets</i></button>
+                        <a href="flight_management.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Flights Management</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">

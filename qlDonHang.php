@@ -39,7 +39,7 @@ require_once('libraAd.php');
                     </li>
                     <li class="btn-group nav-item">
                         <a href="Tickets.php">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Tickets</i></button>
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-tickets"> Flight Management</i></button>
                         </a>
                     </li>
                     <li class="btn-group nav-item">
