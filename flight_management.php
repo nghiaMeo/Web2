@@ -79,7 +79,7 @@ if (!isset($_REQUEST['Page']))
                         <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> Home</i></button>
                     </a>
                     <a href="flight_management.php">
-                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
                     </a>
                     <a href="qlDonHang.php">
                         <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
@@ -104,12 +104,16 @@ if (!isset($_REQUEST['Page']))
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
+            <h3 style="text-align: center;">Flights Management</h3>
+            <hr style="margin-bottom: 10px;">
             <div class="main-card mb-3 card">
                 <div class="row center-block" style="margin-top: 2em;">
                     <div class="col-md-3">
-                        <h3>Flights Management</h3>
+                        <a href="add_flight.php"><button type="button" style="margin-left: 10px;" class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-plus"> Add</i></button></a>
+
                     </div>
                     <div class="col-md-9">
                         <form action="flight_management.php" class="form-inline" method="get">
@@ -166,11 +170,13 @@ if (!isset($_REQUEST['Page']))
                                 <th>Arrival date</th>
                                 <th>Depature time</th>
                                 <th>Arrival time</th>
-                                <th>Seat economy</th>
-                                <th>Seat bussiness</th>
+                                <th>S.Economy</th>
+                                <th>S.Bussiness</th>
                                 <th>Price economy</th>
                                 <th>Price bussiness</th>
                                 <th>Jet id</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -196,6 +202,8 @@ if (!isset($_REQUEST['Page']))
                                     <td><?= $row["price_economy"] ?></td>
                                     <td><?= $row["price_business"] ?></td>
                                     <td><?= $row['jet_id'] ?></td>
+                                    <td><button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-edit"></i></button></td>
+                                    <td><a href="delete_flight.php?flight_no=<?= $row['flight_no'] ?>&&departure_date=<?= $row['departure_date'] ?>"><button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"  onclick="return confirm('Are you sure?');"><i class="nav-link-icon fa fa-trash"></i></button></a></td>
                                 </tr>
                             <?php
                             }
@@ -214,7 +222,7 @@ if (!isset($_REQUEST['Page']))
                             $_REQUEST['to']
                         ) : '?Page=' . (($_REQUEST['Page'] > 0) ? $_REQUEST['Page'] - 1 : $_REQUEST['Page']);
                         ?>
-                        <li><a href="flight_management.php<?= $search ?>">Previous</a></li>
+                        <li><a href="flight_management.php<?= $search ?>"><i class="nav-link-icon fa fa-arrow-left"></i></a></li>
                         <?php
                         if (isset($_REQUEST['from']))
                             $sql = sprintf("SELECT * FROM flight_details WHERE from_city='%s' and to_city='%s' and departure_date='%s'", $_REQUEST['from'], $_REQUEST['to'], $_REQUEST['dep_date']);
@@ -243,7 +251,7 @@ if (!isset($_REQUEST['Page']))
                             $_REQUEST['to']
                         ) : '?Page=' . (($_REQUEST['Page'] < $page - 1) ? $_REQUEST['Page'] + 1 : $_REQUEST['Page']);
                         ?>
-                        <li><a href="flight_management.php<?= $search ?>">Next</a></li>
+                        <li><a href="flight_management.php<?= $search ?>"><i class="nav-link-icon fa fa-arrow-right"></i></a></li>
                     </ul>
                 </div>
             </div>
