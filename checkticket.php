@@ -99,7 +99,7 @@ if (isset($_REQUEST["u_sub"])) {
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <?php
-                                        if (isLoginedCus()) {
+                                        if (isLoginedCus()) {   
                                             echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\"><i class=\"nav-link-icon fa fa-sign-out\">LOGOUT</i>
                                             </button></a>";
                                         }

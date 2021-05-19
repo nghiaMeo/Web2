@@ -125,34 +125,38 @@ require_once('formticket.php');
             </div><br>
             <div class=\"col-md-15 \" style=\"text-align: center;\">";
     ?>
-                        <a href="#" class="prev-page">
-                            <i class="fa fa-angle-left">
-                            </i>
-                        </a>
-                        <?php
-                        $sql = getSql();                       
-                        $result = $conn->query($sql);
-                        $row = $result->num_rows;
-                        $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
-                        for ($i = 0; $i < $pages; $i++) {
-                            $search = sprintf("Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search="
-                            ,$i,$_REQUEST['from'],
-                            $_REQUEST['to'],
-                            $_REQUEST['dep_date'],
-                            $_REQUEST['no_of_pass'] ,$class);
-                        ?>
-                            <a href="formticket.php?<?= $search ?>" class="active">
-                                <?= ($i + 1) ?>
-                            </a>
-                        <?php
-                        }
-                        ?>
-                        <a href="#" class="next-page">
-                            <i class="fa fa-angle-right">
-                            </i>
-                        </a>
+                <a href="#" class="prev-page">
+                    <i class="fa fa-angle-left">
+                    </i>
+                </a>
+                <?php
+                $sql = getSql();
+                $result = $conn->query($sql);
+                $row = $result->num_rows;
+                $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
+                for ($i = 0; $i < $pages; $i++) {
+                    $search = sprintf(
+                        "Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search=",
+                        $i,
+                        $_REQUEST['from'],
+                        $_REQUEST['to'],
+                        $_REQUEST['dep_date'],
+                        $_REQUEST['no_of_pass'],
+                        $class
+                    );
+                ?>
+                    <a href="formticket.php?<?= $search ?>" class="active">
+                        <?= ($i + 1) ?>
+                    </a>
+                <?php
+                }
+                ?>
+                <a href="#" class="next-page">
+                    <i class="fa fa-angle-right">
+                    </i>
+                </a>
 
-    <?php
+            <?php
                 echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\"   name=\"Select\"></p>";
                 echo "</form>
             </div>";
@@ -196,22 +200,26 @@ require_once('formticket.php');
                 echo "</table></div> <br>
                 <div class=\"col-md-15 \" style=\"text-align: center;\">
                 ";
-                ?>
+            ?>
                 <a href="#" class="prev-page">
                     <i class="fa fa-angle-left">
                     </i>
                 </a>
                 <?php
-                $sql = getSql();                       
+                $sql = getSql();
                 $result = $conn->query($sql);
                 $row = $result->num_rows;
                 $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
                 for ($i = 0; $i < $pages; $i++) {
-                    $search = sprintf("Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search="
-                    ,$i,$_REQUEST['from'],
-                    $_REQUEST['to'],
-                    $_REQUEST['dep_date'],
-                    $_REQUEST['no_of_pass'] ,$class);
+                    $search = sprintf(
+                        "Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search=",
+                        $i,
+                        $_REQUEST['from'],
+                        $_REQUEST['to'],
+                        $_REQUEST['dep_date'],
+                        $_REQUEST['no_of_pass'],
+                        $class
+                    );
                 ?>
                     <a href="formticket.php?<?= $search ?>" class="active">
                         <?= ($i + 1) ?>
@@ -224,7 +232,7 @@ require_once('formticket.php');
                     </i>
                 </a>
 
-<?php
+    <?php
                 echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" name=\"Select\"> </p>";
                 echo "</form>
                 </div> ";
@@ -238,6 +246,14 @@ require_once('formticket.php');
             echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
     }
     ?>
+    <div class="col-md-10" style="margin-left: 44%;">
+        <?php
+        if (isLoginedCus()) {
+            echo "<a href=\"user.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+        } else
+            echo "<a href=\"index.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+        ?>
+    </div>
     <script>
         function checkaa() {
             var radios = document.getElementsByName('select_flight');

@@ -80,12 +80,12 @@ require_once('libraCus.php');
                     <div id="tab1">
                         <div class="submit-form">
                             <h4>Check availability for <em>direction</em>:</h4>
-                            <form id="form-submit" action="formticket.php" method="post">
+                            <form id="form-submit" action="formticket.php" method="get">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="from">From:</label>
-                                            <select required name="origin">
+                                            <select required name="from">
                                                 <option value="">Select a location...</option>
                                                 <option value="Vietnam">Viet Nam</option>
                                                 <option value="Cambodia">Cambodia</option>
@@ -103,7 +103,7 @@ require_once('libraCus.php');
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label>To:</label>
-                                            <select required name='destination'>
+                                            <select required name='to'>
                                                 <option value="">Select a location...</option>
                                                 <option value="Japan">Japan</option>
                                                 <option value="Cambodia">Cambodia</option>
@@ -128,7 +128,7 @@ require_once('libraCus.php');
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="no_of_pass"> No. of Passengers</label>
-                                            <input type="number" name="no_of_pass" placeholder="Eg. 5" class="form-control" required="">
+                                            <input type="number" name="no_of_pass" placeholder="Eg. 5" class="form-control" max="9" required="">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">

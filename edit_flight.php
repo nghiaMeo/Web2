@@ -8,7 +8,7 @@ if (isset($_REQUEST['btnsubmit'])) {
         SET flight_no='%s',from_city='%s',to_city='%s',departure_date='%s'
         ,arrival_date='%s',departure_time='%s',arrival_time='%s',seats_economy=%s,
         seats_business=%s,price_economy=%s,price_business=%s,jet_id='%s'
-        WHERE flight_no='%s'",
+        WHERE flight_no='%s'", 
         $_REQUEST['flight_no'],
         $_REQUEST['from'],
         $_REQUEST['to'],
@@ -21,12 +21,12 @@ if (isset($_REQUEST['btnsubmit'])) {
         $_REQUEST['price_econ'],
         $_REQUEST['price_bus'],
         $_REQUEST['jet_id'],
-        $_REQUEST['flight_no']
+        $_REQUEST['flight_no'],
     );
     if ($conn->query($sql) == true) {
-        echo '<script>alert("Add flight success!"); window.location="flight_management.php";</script>';
+        echo '<script>alert("Edit flight success!"); window.location="flight_management.php";</script>';
     } else {
-        echo '<script>alert("Invalid flight No \n re-enter flight No"); window.location="edit_flight.php";</script>';
+        echo '<script>alert("Please check input information"); window.location="edit_flight.php";</script>';
     }
     $conn->close();
 } else {
@@ -106,7 +106,7 @@ if (isset($_REQUEST['btnsubmit'])) {
                                 <div class="col-md-5">
                                     <div class="position-relative form-group">
                                         <label>Flight No</label>
-                                        <input name="flight_no" id="exampleEmail11" placeholder="Ex: C01" value="<?= $row['flight_no'] ?>" type="text" required class="form-control">
+                                        <input name="flight_no" id="exampleEmail11" placeholder="Ex: C01" value="<?= $row['flight_no'] ?>" type="text" required class="form-control" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -155,12 +155,12 @@ if (isset($_REQUEST['btnsubmit'])) {
                                 <div class="col-md-4">
                                     <label for="deparure" style="margin-left: 20px;">Departure Date</label>
                                     <input type="date" value="<?= $row['departure_date'] ?>" name="departure_date" class="form-control" style="margin-left: 1em;" id="deparure" min=<?php $todays_date = date('Y-m-d');
-                                                                                                                                                                                    echo $todays_date; ?> required="">
+                                                                                                                                                                                    echo $todays_date; ?> required="" disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="deparure" style="margin-left: 20px;">Arrival Date</label>
-                                        <input type="date" value="<?= $row['arrival_date'] ?>" name="arrival_date" class="form-control" style="margin-left: 1em;" min=<?php $todays_date = date('Y-m-d');
+                                        <input type="date" value="<?= $row['arrival_date'] ?>" name="arrival_date" class="form-control" style="margin-left: 1em;" min=<?php $todays_date =  $row['departure_date'];
                                                                                                                                                                         echo $todays_date; ?> id="deparure" required="">
                                     </div>
                                 </div>
