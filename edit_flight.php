@@ -1,11 +1,12 @@
 <?php
 require_once('libraAd.php');
 $conn = createDBConnection();
-if (isset($_REQUEST['submit'])) {
+if (isset($_REQUEST['btnsubmit'])) {
 
     $sql = sprintf(
-        "INSERT INTO flight_details 
-                    VALUES ('%s', '%s', '%s', '%s','%s', '%s', '%s',%s, %s, %s,%s,'%s')",
+        "UPDATE flight_details SET flight_no='%s',from_city='%s',to_city='%s',departure_date='%s'
+        ,arrival_date='%s',departure_time='%s',arrival_time='%s',seats_economy=%s,
+        seats_business=%s,price_economy=%s,price_business=%s,jet_id='%s'",
         $_REQUEST['flight_no'],
         $_REQUEST['from'],
         $_REQUEST['to'],
@@ -20,9 +21,9 @@ if (isset($_REQUEST['submit'])) {
         $_REQUEST['jet_id']
     );
     if ($conn->query($sql) == true) {
-        echo '<script>alert("Add flight success!"); window.location="add_flight.php";</script>';
+        echo '<script>alert("Add flight success!"); window.location="edit_flight.php";</script>';
     } else {
-        echo '<script>alert("Invalid flight No \n re-enter flight No"); window.location="add_flight.php";</script>';
+        echo '<script>alert("Invalid flight No \n re-enter flight No"); window.location="edit_flight.php";</script>';
     }
     $conn->close();
 }
@@ -32,7 +33,7 @@ if (isset($_REQUEST['submit'])) {
 <html lang="en">
 
 <head>
-    <title>Add Flight</title>
+    <title>Edit Flight</title>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/fontAwesome.css" rel="stylesheet">
 </head>
@@ -87,13 +88,23 @@ if (isset($_REQUEST['submit'])) {
         <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title" style="text-align: center;">Add Flights</h5>
-                    <form class="" action="add_flight.php" method="POST">
+                    <h5 class="card-title" style="text-align: center;">Edit Flights</h5>
+                    <?php
+                    $conn = createDBConnection();
+                    $sql = sprintf(
+                        "SELECT * FROM flight_details WHERE flight_no='%s' and departure_date='%s'",
+                        $_REQUEST['flight_no'],
+                        $_REQUEST['departure_date']
+                    );
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    ?>
+                    <form class="" action="edit_flight.php" method="POST">
                         <div class="form-row">
                             <div class="col-md-5">
                                 <div class="position-relative form-group">
                                     <label>Flight No</label>
-                                    <input name="flight_no" id="exampleEmail11" placeholder="Ex: C01" type="text" required class="form-control">
+                                    <input name="flight_no" id="exampleEmail11" placeholder="Ex: C01" value="<?= $row['flight_no'] ?>" type="text" required class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +112,7 @@ if (isset($_REQUEST['submit'])) {
                             <div class="col-md-4">
                                 <label for="deparure" style="margin-left: 20px;">From</label>
                                 <select required name='from' style="margin-left: 1em;" class="form-control">
-                                    <option value="">Select a location...</option>
+                                    <option value="<?= $row['from_city'] ?>"><?= $row['from_city'] ?></option>
                                     <option value="Japan">Japan</option>
                                     <option value="Cambodia">Cambodia</option>
                                     <option value="Hong Kong">Hong Kong</option>
@@ -118,7 +129,7 @@ if (isset($_REQUEST['submit'])) {
                                 <div class="form-group">
                                     <label for="deparure" style="margin-left: 20px;">To</label>
                                     <select required name='to' style="margin-left: 1em;" class="form-control">
-                                        <option value="">Select a location...</option>
+                                        <option value="<?= $row['to_city'] ?>"><?= $row['to_city'] ?></option>
                                         <option value="Japan">Japan</option>
                                         <option value="Cambodia">Cambodia</option>
                                         <option value="Hong Kong">Hong Kong</option>
@@ -136,50 +147,50 @@ if (isset($_REQUEST['submit'])) {
                         <div class="form-row">
                             <div class="col-md-4">
                                 <label for="deparure" style="margin-left: 20px;">Departure Date</label>
-                                <input type="date" name="departure_date" class="form-control" style="margin-left: 1em;" id="deparure" min=<?php $todays_date = date('Y-m-d');
-                                                                                                                                            echo $todays_date; ?> required="">
+                                <input type="date" value="<?= $row['departure_date'] ?>" name="departure_date" class="form-control" style="margin-left: 1em;" id="deparure" min=<?php $todays_date = date('Y-m-d');
+                                                                                                                                                                                echo $todays_date; ?> required="">
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="deparure" style="margin-left: 20px;">Arrival Date</label>
-                                    <input type="date" name="arrival_date" class="form-control" style="margin-left: 1em;" min=<?php $todays_date = date('Y-m-d');
-                                                                                                                                echo $todays_date; ?> id="deparure" required="">
+                                    <input type="date" value="<?= $row['arrival_date'] ?>" name="arrival_date" class="form-control" style="margin-left: 1em;" min=<?php $todays_date = date('Y-m-d');
+                                                                                                                                                                    echo $todays_date; ?> id="deparure" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-4">
                                 <label for="deparure" style="margin-left: 20px;">Departure Time </label>
-                                <input type="time" name="departure_time" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                <input type="time" value="<?= $row['departure_time'] ?>" name="departure_time" class="form-control" style="margin-left: 1em;" id="deparure" required="">
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="deparure" style="margin-left: 20px;">Arrival Time</label>
-                                    <input type="time" name="arrival_time" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                    <input type="time" value="<?= $row['arrival_time'] ?>" name="arrival_time" class="form-control" style="margin-left: 1em;" id="deparure" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-4">
                                 <label for="deparure" style="margin-left: 20px;">Number of Seats in Economy Class</label>
-                                <input type="number" name="number_econ" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                <input type="number" value="<?= $row['seats_economy'] ?>" name="number_econ" class="form-control" style="margin-left: 1em;" id="deparure" required="">
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="deparure" style="margin-left: 20px;">Number of Seats in Business Class</label>
-                                    <input type="number" name="number_bus" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                    <input type="number" value="<?= $row['seats_business'] ?>" name="number_bus" class="form-control" style="margin-left: 1em;" id="deparure" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-4">
                                 <label for="deparure" style="margin-left: 20px;">Ticket Price(Economy Class)</label>
-                                <input type="number" name="price_econ" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                <input type="number" value="<?= $row["price_economy"] ?>" name="price_econ" class="form-control" style="margin-left: 1em;" id="deparure" required="">
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="deparure" style="margin-left: 20px;">Ticket Price(Business Class)</label>
-                                    <input type="number" name="price_bus" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                    <input type="number" value="<?= $row["price_business"] ?>" name="price_bus" class="form-control" style="margin-left: 1em;" id="deparure" required="">
                                 </div>
                             </div>
                         </div>
@@ -188,6 +199,7 @@ if (isset($_REQUEST['submit'])) {
                                 <div class="position-relative form-group">
                                     <label>Jet ID</label>
                                     <select required name='jet_id' style="margin-left: 1em;" class="form-control">
+                                        <option value="<?= $row['jet_id'] ?>"><?= $row['jet_id'] ?></option>
                                         <?php
                                         $sql = "SELECT jet_id FROM jet_details";
                                         $result = $conn->query($sql);
@@ -202,7 +214,7 @@ if (isset($_REQUEST['submit'])) {
                                 </div>
                             </div>
                         </div>
-                        <button class="mt-2 btn btn-primary" name="submit" value="submit">ADD</button>
+                        <button class="mt-2 btn btn-primary" name="btnsubmit" value="btnsubmit">EDIT</button>
                     </form>
                 </div>
             </div>

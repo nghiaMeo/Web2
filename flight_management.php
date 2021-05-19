@@ -202,8 +202,8 @@ if (!isset($_REQUEST['Page']))
                                     <td><?= $row["price_economy"] ?></td>
                                     <td><?= $row["price_business"] ?></td>
                                     <td><?= $row['jet_id'] ?></td>
-                                    <td><button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-edit"></i></button></td>
-                                    <td><a href="delete_flight.php?flight_no=<?= $row['flight_no'] ?>&&departure_date=<?= $row['departure_date'] ?>"><button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"  onclick="return confirm('Are you sure?');"><i class="nav-link-icon fa fa-trash"></i></button></a></td>
+                                    <td><a href="edit_flight.php?flight_no=<?= $row['flight_no'] ?>&&departure_date=<?= $row['departure_date'] ?>"><button class="mr-2 btn-icon btn-icon-only btn btn-outline-info"><i class="nav-link-icon fa fa-edit"></i></button></a></td>
+                                    <td><a href="delete_flight.php?flight_no=<?= $row['flight_no'] ?>&&departure_date=<?= $row['departure_date'] ?>"><button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger" onclick="return confirm('Are you sure?');"><i class="nav-link-icon fa fa-trash"></i></button></a></td>
                                 </tr>
                             <?php
                             }
@@ -230,7 +230,7 @@ if (!isset($_REQUEST['Page']))
                             $sql = "SELECT * FROM flight_details";
                         $result = $conn->query($sql);
                         $all = $result->num_rows;
-                        $page = ($all % 5 == 0) ? intval($all / 4) : intval($all / 4) + 1;
+                        $page = ($all % 5 == 0) ? intval($all / 5) : intval($all / 5) + 1;
                         for ($i = 0; $i < $page; $i++) {
                             $search = isset($_REQUEST['from']) ? sprintf(
                                 "?Page=%s&dep_date=%s&from=%s&to=%s&Search=",
