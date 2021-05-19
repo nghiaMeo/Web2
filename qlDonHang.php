@@ -121,10 +121,11 @@ require_once('libraAd.php');
                                 <th class="text-center">Flight number</th>
                                 <th class="text-center">Journey date</th>
                                 <th class="text-center">class</th>
-                                <th class="text-center">booking_status</th>
+                                <th class="text-center">booking status</th>
                                 <th class="text-center">no_of_passengers</th>
                                 <th class="text-center">payment mode</th>
                                 <th class="text-center">Details</th>
+                                <th class="text-center">Confirm</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,8 +145,22 @@ require_once('libraAd.php');
                                     <td class="text-center text-muted"><?= $row['booking_status'] ?></td>
                                     <td class="text-center text-muted"><?= $row['no_of_passengers'] ?></td>
                                     <td class="text-center text-muted"><?= $row['payment_mode'] ?></td>
-                                    <td class="text-center text-muted"> 
-                                        <a href="detailCus.php?pnr=<?= $row['pnr']?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info" data-toggle="modal" data-target="#myModal">Details</button></a> </td>
+                                    <td class="text-center text-muted">
+                                        <a href="detailCus.php?pnr=<?= $row['pnr'] ?>&&payment_amount=<?= $row['payment_amount'] ?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info">Details</button></a>
+                                    </td>
+                                    </td>
+                                    <td class="text-center text-muted"><?php
+                                                                        if ($row['booking_status'] == "PENDING") {
+                                                                        ?>
+                                            <a href="confirmticket.php?pnr=<?= $row['pnr'] ?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info">CONFIRM</button></a>
+                                        <?php
+                                                                        } else { ?>
+                                            <a href="confirmticket.php?pnr=<?= $row['pnr'] ?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info" disabled>CONFIRM</button></a>
+                                        <?php
+                                                                        }
+
+                                        ?>
+                                    </td>
                                 </tr>
                             <?php
                             } ?>
@@ -154,35 +169,13 @@ require_once('libraAd.php');
                 </div>
 
                 <div class="d-block text-center card-footer">
-                    <nav class="" aria-label="Page navigation example" style="padding-left: 520px;">
-                        <ul class="pagination">
-                            <li class="page-item "><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only"></span></a></li>
-
-                            <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only"></span></a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript" src="js/main1.js"></script>
-    <script>
-        function get(a, b, c, d, e, f, g, h, i, j, k, x) {
-            document.getElementById('a1').innerHTML = a;
-            document.getElementById('a2').innerHTML = c;
-            document.getElementById('a3').innerHTML = d;
-            document.getElementById('a4').innerHTML = e;
-            document.getElementById('a5').innerHTML = f;
-            document.getElementById('a6').innerHTML = g;
-            document.getElementById('a7').innerHTML = h;
-            document.getElementById('a8').innerHTML = i;
-            document.getElementById('a9').innerHTML = j;
-            document.getElementById('a10').innerHTML = k;
-            document.getElementById('a11').innerHTML = x;
-        }
-    </script>
+
 </body>
 
 </html>

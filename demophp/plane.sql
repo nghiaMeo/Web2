@@ -12,11 +12,6 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `plane`
 --
@@ -280,7 +275,7 @@ INSERT INTO `payment_details` (`payment_id`, `pnr`, `payment_date`, `payment_amo
 --
 DELIMITER $$
 CREATE TRIGGER `update_ticket_after_payment` AFTER INSERT ON `payment_details` FOR EACH ROW UPDATE ticket_details
-     SET booking_status='CONFIRMED', payment_id= NEW.payment_id
+     SET booking_status='PENDING', payment_id= NEW.payment_id
    WHERE pnr = NEW.pnr
 $$
 DELIMITER ;

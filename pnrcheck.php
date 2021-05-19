@@ -195,7 +195,7 @@ $result = mysqli_query($con, "SELECT * FROM passengers WHERE pnr='" . $stname . 
   <br>
   <h3 style="text-align: center;">
     <?php
-    if ($booking_status == "CANCELED") {
+    if ($booking_status == "PENDING") {
     ?>
       <a href="checkticket.php"><button class="button1 button3">CHECK OTHER TICKKET</button></a>
     <?php

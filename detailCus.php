@@ -122,10 +122,10 @@ require_once('libraAd.php');
                             $result = $conn->query($sql);
                             while ($row = $result->fetch_assoc()) {
                             ?><tr style="background-color: rgb(51, 51, 204); color: white;">
-                                    <th colspan="8" style="text-align: left;">Flight information</th>
+                                    <th colspan="8">Flight information</th>
                                 </tr>
 
-                                <tr style="background-color: rgb(204, 153, 0); color: white;">
+                                <tr>
                                     <td>Passenger No</td>
                                     <td>Name</td>
                                     <td>Gender</td>
@@ -148,10 +148,10 @@ require_once('libraAd.php');
                                         else echo $row['meal_choice'];
                                         ?></td>
                                 </tr>
-                                <tr style="background-color: rgb(51, 51, 204); color: white;">
+                                <tr>
                                     <th colspan="8" style="text-align: left;">Services</th>
                                 </tr>
-                                <tr style="background-color: rgb(204, 153, 0); color: white;">
+                                <tr>
                                     <td>Lounge Access</td>
                                     <td>Priority Checkin</td>
                                     <td colspan="8">Insurance</td>
@@ -162,21 +162,14 @@ require_once('libraAd.php');
                                     <td> <?php echo $row['insurance']; ?> </td>
                                 </tr>
                             <?php
-                            } ?>
+                            }
+
+                            ?>
                         </tbody>
                     </table>
+                    <h4 style="margin-left: 80%;">Total: $<?= $_REQUEST['payment_amount']?></h4>
                 </div>
 
-                <div class="d-block text-center card-footer">
-                    <nav class="" aria-label="Page navigation example" style="padding-left: 520px;">
-                        <ul class="pagination">
-                            <li class="page-item "><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only"></span></a></li>
-
-                            <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only"></span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>
