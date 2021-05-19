@@ -113,39 +113,53 @@ require_once('libraAd.php');
                 </div>
                 <div class="table-responsive">
                     <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">PNR number</th>
-                                <th class="text-center">Payment ID </th>
-                                <th class="text-center">Date of reservation</th>
-                                <th class="text-center">Flight number</th>
-                                <th class="text-center">Journey date</th>
-                                <th class="text-center">class</th>
-                                <th class="text-center">booking_status</th>
-                                <th class="text-center">no_of_passengers</th>
-                                <th class="text-center">payment mode</th>
-                                <th class="text-center">Details</th>
-                            </tr>
-                        </thead>
+
                         <tbody>
                             <?php
                             $conn = createDBConnection();
-                            $sql = "SELECT * FROM  ticket_details td, payment_details pd WHERE td.pnr = pd.pnr";
+                            $sql = "SELECT *
+                              from passengers pass, ticket_details td,flight_details fd where pass.pnr='" . $_REQUEST['pnr'] . "' and td.flight_no = fd.flight_no and td.pnr=pass.pnr ";
                             $result = $conn->query($sql);
                             while ($row = $result->fetch_assoc()) {
-                            ?>
+                            ?><tr style="background-color: rgb(51, 51, 204); color: white;">
+                                    <th colspan="8" style="text-align: left;">Flight information</th>
+                                </tr>
+
+                                <tr style="background-color: rgb(204, 153, 0); color: white;">
+                                    <td>Passenger No</td>
+                                    <td>Name</td>
+                                    <td>Gender</td>
+                                    <td>Age</td>
+                                    <td>From - To</td>
+                                    <td>Departure date->Arrival date</td>
+                                    <td>Departure time-Arrival time</td>
+                                    <td> Meail Choice</td>
+                                </tr>
                                 <tr>
-                                    <td class="text-center text-muted"><?= $row['pnr'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['payment_id'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['date_of_reservation'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['flight_no'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['journey_date'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['class'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['booking_status'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['no_of_passengers'] ?></td>
-                                    <td class="text-center text-muted"><?= $row['payment_mode'] ?></td>
-                                    <td class="text-center text-muted"> 
-                                        <a href="detailCus.php?pnr=<?= $row['pnr']?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info" data-toggle="modal" data-target="#myModal">Details</button></a> </td>
+                                    <td> <?= $row['passenger_id'] ?></td>
+                                    <td> <?= $row['name'] ?></td>
+                                    <td><?= $row['age'] ?></td>
+                                    <td><?= $row['gender'] ?></td>
+                                    <td><?= $row['from_city'] ?> - <?= $row['to_city'] ?></td>
+                                    <td><?= $row['departure_date'] ?> -> <?= $row['arrival_date'] ?></td>
+                                    <td><?= $row['departure_time'] ?> - <?= $row['arrival_time'] ?></td>
+                                    <td><?php if ($row['meal_choice'] == '')
+                                            echo "No";
+                                        else echo $row['meal_choice'];
+                                        ?></td>
+                                </tr>
+                                <tr style="background-color: rgb(51, 51, 204); color: white;">
+                                    <th colspan="8" style="text-align: left;">Services</th>
+                                </tr>
+                                <tr style="background-color: rgb(204, 153, 0); color: white;">
+                                    <td>Lounge Access</td>
+                                    <td>Priority Checkin</td>
+                                    <td colspan="8">Insurance</td>
+                                </tr>
+                                <tr>
+                                    <td> <?php echo $row['lounge_access']; ?> </td>
+                                    <td> <?php echo $row['priority_checkin']; ?> </td>
+                                    <td> <?php echo $row['insurance']; ?> </td>
                                 </tr>
                             <?php
                             } ?>
@@ -168,21 +182,7 @@ require_once('libraAd.php');
     </div>
 
     <script type="text/javascript" src="js/main1.js"></script>
-    <script>
-        function get(a, b, c, d, e, f, g, h, i, j, k, x) {
-            document.getElementById('a1').innerHTML = a;
-            document.getElementById('a2').innerHTML = c;
-            document.getElementById('a3').innerHTML = d;
-            document.getElementById('a4').innerHTML = e;
-            document.getElementById('a5').innerHTML = f;
-            document.getElementById('a6').innerHTML = g;
-            document.getElementById('a7').innerHTML = h;
-            document.getElementById('a8').innerHTML = i;
-            document.getElementById('a9').innerHTML = j;
-            document.getElementById('a10').innerHTML = k;
-            document.getElementById('a11').innerHTML = x;
-        }
-    </script>
+
 </body>
 
 </html>

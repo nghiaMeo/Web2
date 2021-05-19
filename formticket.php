@@ -36,16 +36,29 @@ require_once('formticket.php');
     <?php
     function getSql()
     {
-        if ($_REQUEST['from'] != '' && $_REQUEST['to'] != '' && $_REQUEST['dep_date'] != '') {
-            return sprintf(
-                "SELECT * FROM Flight_Details WHERE from_city='%s' and to_city='%s' and departure_date= '%s' and seats_economy>=%s ORDER BY  departure_time",
-                $_REQUEST['from'],
-                $_REQUEST['to'],
-                $_REQUEST['dep_date'],
-                $_REQUEST['no_of_pass']
-            );
+        if ($_REQUEST['class'] == "economy") {
+            if ($_REQUEST['from'] != '' && $_REQUEST['to'] != '' && $_REQUEST['dep_date'] != '') {
+                return sprintf(
+                    "SELECT * FROM Flight_Details WHERE from_city='%s' and to_city='%s' and departure_date= '%s' and seats_economy >= %s ORDER BY  departure_time",
+                    $_REQUEST['from'],
+                    $_REQUEST['to'],
+                    $_REQUEST['dep_date'],
+                    $_REQUEST['no_of_pass']
+                );
+            }
+        } else if ($_REQUEST['class'] == "business") {
+            if ($_REQUEST['from'] != '' && $_REQUEST['to'] != '' && $_REQUEST['dep_date'] != '') {
+                return sprintf(
+                    "SELECT * FROM Flight_Details WHERE from_city='%s' and to_city='%s' and departure_date= '%s' and seats_business >= %s ORDER BY  departure_time",
+                    $_REQUEST['from'],
+                    $_REQUEST['to'],
+                    $_REQUEST['dep_date'],
+                    $_REQUEST['no_of_pass']
+                );
+            }
         }
     }
+
     $sql =  getSql();
     $sql = $sql . " LIMIT " . ($_REQUEST['Page'] * 3) . ",3";
     $result = $conn->query($sql);

@@ -87,7 +87,7 @@ $q = mysqli_query($con, "select td.pnr,td.flight_no,td.journey_date, td.class,
 td.booking_status, td.no_of_passengers, td.lounge_access, td.priority_checkin, td.insurance, 
 td.payment_id, td.customer_id, td.date_of_reservation,fd.flight_no,fd.from_city, fd.to_city, 
 fd.departure_date, fd.arrival_date, fd.departure_time, fd.arrival_time
-  from ticket_details td,flight_details fd where pnr='" . $pnr . "' and td.flight_no = fd.flight_no");
+  from ticket_details td,flight_details fd where td.pnr='" . $pnr . "' and td.flight_no = fd.flight_no");
 $n =  mysqli_fetch_assoc($q);
 $stname = $n['pnr'];
 $flight_no = $n['flight_no'];
