@@ -1,5 +1,6 @@
 <?php
 require_once('libraAd.php');
+if(isLoginAd()){
 
 ?>
 <!doctype html>
@@ -179,3 +180,8 @@ require_once('libraAd.php');
 </body>
 
 </html>
+<?php
+}
+else
+header("Location: LoginAd.php");
+?>

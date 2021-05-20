@@ -25,8 +25,9 @@ isLoginedCus();
 
 <body>
 	<h2>BOOKING SUCCESSFUL</h2>
-	
-	<h3>Your payment of $<?php echo $_SESSION['total_amount']; ?> has been received.<br><br> Your PNR is <strong><?php echo $_SESSION['pnr']; ?></strong>. Your tickets have been booked successfully.</h3>
+
+	<h3>Your payment of $<?php echo $_SESSION['total_amount']; ?> has been received.<br><br> Your PNR is <strong><?php echo $_SESSION['pnr']; ?>
+		</strong> hold your PNR to check tickets. Your tickets have been booked successfully.</h3>
 	<?php
 	if (isLoginedCus()) {
 		echo "<a href=\"user.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";

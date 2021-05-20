@@ -38,15 +38,18 @@ require_once('libraCus.php');
         <div class="app-header__content">
             <div class="app-header-left">
                 <ul class="header-menu nav">
-                    <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                     <?php
                     if (isLoginedCus()) {
                     ?>
+                        <a href="user.php">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> HOME</i></button>
+                        </a>
                         <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
                         <a href="reservationinfor.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION IFORMATION</button></a>
                     <?php
                     }
                     ?>
+                    <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                 </ul>
             </div>
             <div class="app-header-right">

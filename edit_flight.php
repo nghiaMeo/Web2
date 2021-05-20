@@ -1,6 +1,7 @@
 <?php
 require_once('libraAd.php');
 $conn = createDBConnection();
+if(isLoginAd()){
 if (isset($_REQUEST['btnsubmit'])) {
 
     $sql = sprintf(
@@ -233,5 +234,5 @@ if (isset($_REQUEST['btnsubmit'])) {
     </html>
 <?php
 }
-
+}else header("Location: LoginAd.php");
 ?>

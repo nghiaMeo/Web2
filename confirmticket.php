@@ -9,7 +9,7 @@ $sql = sprintf(
 );
 
 if ($conn->query($sql) == true) {
-    echo '<script>alert("Confirm success!"); window.location="qlDonHang.php";</script>';
+    header("Location: qlDonHang.php");
 } else {
     echo '<script>alert("CANNOT"); window.location="qlDonHang.php";</script>';
 }

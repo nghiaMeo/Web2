@@ -88,9 +88,9 @@ require_once('libraCus.php');
 			$query = "INSERT INTO Passengers (passenger_id,pnr,name,age,gender,meal_choice,frequent_flier_no) VALUES (?,?,?,?,?,?,?)";
 			$stmt = mysqli_prepare($dbc, $query);
 
-			if ($_POST['pass_meal[]'][$i - 1] == 'yes')
+			if ($_POST['pass_meal'][$i - 1] == 'yes')
 				$total_no_of_meals++;
-			mysqli_stmt_bind_param($stmt, "ississs", $i, $pnr, $_POST['pass_name'][$i - 1], $_POST['pass_age'][$i - 1], $_POST['pass_gender'][$i - 1], $_POST['pass_meal[]'][$i - 1], $_POST['pass_ff_id'][$i - 1]);
+			mysqli_stmt_bind_param($stmt, "ississs", $i, $pnr, $_POST['pass_name'][$i - 1], $_POST['pass_age'][$i - 1], $_POST['pass_gender'][$i - 1], $_POST['pass_meal'][$i - 1], $_POST['pass_ff_id'][$i - 1]);
 			mysqli_stmt_execute($stmt);
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
 			echo 'Passenger added ' . $affected_rows . '<br>';
