@@ -31,7 +31,7 @@ if (isset($_REQUEST["u_sub"])) {
 <head>
     <title>Check Tickets</title>
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/fontAwesome.css" rel="stylesheet">
+    <link href="css/fontAwesome.css" rel="stylesheet" >
 </head>
 
 <body>
@@ -61,11 +61,11 @@ if (isset($_REQUEST["u_sub"])) {
             <div class="app-header-left">
                 <ul class="header-menu nav">
                     <button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button>
+                    <a href="reservationinfor.html"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION IFORMATION</button></a>
                     <?php
                     if (isLoginedCus()) {
                     ?>
                         <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
-
                     <?php
                     }
                     ?>
@@ -99,7 +99,7 @@ if (isset($_REQUEST["u_sub"])) {
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <?php
-                                        if (isLoginedCus()) {   
+                                        if (isLoginedCus()) {
                                             echo "<a href=\"LogoutCus.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\"><i class=\"nav-link-icon fa fa-sign-out\">LOGOUT</i>
                                             </button></a>";
                                         }

@@ -1,6 +1,7 @@
 <?php
 session_start();
-function createDBConnection() {
+function createDBConnection()
+{
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -17,7 +18,7 @@ function createDBConnection() {
 }
 function loginAdmin($user, $pass)
 {
-    
+
     $conn = createDBConnection();
     // Check connection
     if ($conn->connect_error) {
@@ -33,9 +34,8 @@ function loginAdmin($user, $pass)
                 // login thanh cong
                 $_SESSION['admin_id'] = $user;
                 return true;
-            }
-            else {
-                return "* Error password";    
+            } else {
+                return "* Error password";
             }
         }
     } else {

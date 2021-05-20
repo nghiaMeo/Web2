@@ -110,6 +110,7 @@ $arrival_time = $n['arrival_time'];
 
 
 $result = mysqli_query($con, "SELECT * FROM passengers WHERE pnr='" . $stname . "'");
+
 ?>
 
 <body>
@@ -176,7 +177,7 @@ $result = mysqli_query($con, "SELECT * FROM passengers WHERE pnr='" . $stname . 
         <td>From - To</td>
         <td>Departure date</td>
         <td>Departure time-Arrival time</td>
-        <td> Meail Choice</td>
+        <td> Meal Choice</td>
       </tr>
       <tr>
         <td> <?php echo '' . $row[0] . '   ' ?></td>
@@ -186,7 +187,11 @@ $result = mysqli_query($con, "SELECT * FROM passengers WHERE pnr='" . $stname . 
         <td> <?php echo '' . $from_city . ' - ' . $to_city . '' ?></td>
         <td><?php echo $departure_date; ?></td>
         <td><?php echo $departure_time . '-' . $arrival_time; ?></td>
-        <td> <?php echo $row[5] ?></td>
+        <td> <?php if ($row[5] == "") {
+                echo "No";
+              } else {
+                echo $row[5];
+              } ?></td>
       </tr>
     </table>
   <?php

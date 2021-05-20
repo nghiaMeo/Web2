@@ -1,3 +1,6 @@
+<?php
+require_once('libraCus.php');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +47,17 @@ http://www.tooplate.com/view/2093-flight
                 </div>
                 <div class="col-md-6">
                     <div class="page-direction-button">
-                        <a href="index.html"><i class="fa fa-home"></i>Go Back Home</a>
+                        <?php
+                        if (isLoginedCus()) { ?>
+                            <a href="user.php"><i class="fa fa-home"></i>Go Back Home</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="index.php"><i class="fa fa-home"></i>Go Back Home</a>
+
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -69,9 +82,16 @@ http://www.tooplate.com/view/2093-flight
                 </div>
                 <div class="col-md-4">
                     <h6>Electronic tickets</h6>
-                    <p>The tickets we sell to passengers are electronic tickets, so, right after the successful booking and payment, you will receive the e-ticket via the email address you registered. <br> An e-ticket is a cruise confirmation issued by us
-                        or our authorized representative, or it could also be a boarding pass. All ticket information is stored on our computer system. Vietjet e-ticket includes 8 numbers. Example: 12345678 <br> If you do not receive your e-ticket information
-                        within 1 hour after purchasing your ticket, you can access the website www.vietjetair.com with your Reservation Code and passenger information to search. E-ticket information, or contact Callcenter 19001886 to receive tickets.<br>                        During check-in, you must provide us with an electronic ticket for check-in.
+                    <p>The tickets we sell to passengers are electronic tickets, so, right after the successful booking
+                        and payment, you will receive the e-ticket via the email address you registered. <br> An
+                        e-ticket is a cruise confirmation issued by us
+                        or our authorized representative, or it could also be a boarding pass. All ticket information is
+                        stored on our computer system. Vietjet e-ticket includes 8 numbers. Example: 12345678 <br> If
+                        you do not receive your e-ticket information
+                        within 1 hour after purchasing your ticket, you can access the website www.vietjetair.com with
+                        your Reservation Code and passenger information to search. E-ticket information, or contact
+                        Callcenter 19001886 to receive tickets.<br> During check-in, you must provide us with an
+                        electronic ticket for check-in.
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -165,4 +185,5 @@ http://www.tooplate.com/view/2093-flight
         }
     </script>
 </body>
+
 </html>

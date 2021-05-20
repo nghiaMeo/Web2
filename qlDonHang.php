@@ -155,7 +155,7 @@ require_once('libraAd.php');
                                             <a href="confirmticket.php?pnr=<?= $row['pnr'] ?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info">CONFIRM</button></a>
                                         <?php
                                                                         } else { ?>
-                                            <a href="confirmticket.php?pnr=<?= $row['pnr'] ?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn btn-outline-info" disabled>CONFIRM</button></a>
+                                            <a href="confirmticket.php?pnr=<?= $row['pnr'] ?>"><button type="button" class="mr-2 btn-icon btn-icon-only btn" disabled>CONFIRM</button></a>
                                         <?php
                                                                         }
 

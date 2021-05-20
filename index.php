@@ -35,6 +35,7 @@ require_once('libraCus.php');
             <div class="app-header-left">
                 <ul class="header-menu nav">
                     <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
+                    <a href="reservationinfor.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION IFORMATION</button></a>
                 </ul>
             </div>
             <div class="app-header-right">

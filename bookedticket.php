@@ -43,7 +43,7 @@ require_once('libraCus.php');
                     if (isLoginedCus()) {
                     ?>
                         <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
-
+                        <a href="reservationinfor.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION IFORMATION</button></a>
                     <?php
                     }
                     ?>
