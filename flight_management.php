@@ -1,7 +1,36 @@
 <?php
-require_once('libraAd.php');
 if (!isset($_REQUEST['Page']))
     $_REQUEST['Page'] = 0;
+if (!isset($_REQUEST['dep_date']))
+    $_REQUEST['dep_date'] = "";
+if (!isset($_REQUEST['from']))
+    $_REQUEST['from'] = "";
+if (!isset($_REQUEST['to']))
+    $_REQUEST['to'] = "";
+function getSQL()
+{
+    $sql = "";
+    if ($_REQUEST['dep_date'] != '') {
+        $sql = sprintf("SELECT * FROM flight_details WHERE departure_date>='%s'", $_REQUEST['dep_date']);
+    }
+    if ($_REQUEST['from'] != '') {
+        if ($sql != "")
+            $sql = $sql . sprintf(" and from_city='%s'", $_REQUEST['from']);
+        else
+            $sql = sprintf("SELECT * FROM flight_details WHERE from_city='%s'", $_REQUEST['from']);
+    }
+    if ($_REQUEST['to'] != '') {
+        if ($sql != "")
+            $sql = $sql . sprintf(" and to_city='%s'", $_REQUEST['to']);
+        else
+            $sql = sprintf("SELECT * FROM flight_details WHERE to_city='%s'", $_REQUEST['to']);
+    }
+    if ($sql == "")
+        $sql = "SELECT * FROM flight_details";
+    return $sql;
+}
+require_once('libraAd.php');
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -119,11 +148,11 @@ if (!isset($_REQUEST['Page']))
                         <form action="flight_management.php" class="form-inline" method="get">
                             <div class="form-group">
                                 <label for="deparure">Depature date:</label>
-                                <input type="date" name="dep_date" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                <input type="date" name="dep_date" class="form-control" style="margin-left: 1em;" id="deparure">
                             </div>
                             <div class="form-group" style="margin-left: 1em;">
                                 <label for="deparure">Flight From:</label>
-                                <select required name='from' style="margin-left: 1em;" class="form-control">
+                                <select name='from' style="margin-left: 1em;" class="form-control">
                                     <option value="">Select a location...</option>
                                     <option value="Japan">Japan</option>
                                     <option value="Cambodia">Cambodia</option>
@@ -139,7 +168,7 @@ if (!isset($_REQUEST['Page']))
                             </div>
                             <div class="form-group" style="margin-left: 1em;">
                                 <label for="deparure">Flight to:</label>
-                                <select required name='to' style="margin-left: 1em;" class="form-control">
+                                <select name='to' style="margin-left: 1em;" class="form-control">
                                     <option value="">Select a location...</option>
                                     <option value="Japan">Japan</option>
                                     <option value="Cambodia">Cambodia</option>
@@ -181,10 +210,7 @@ if (!isset($_REQUEST['Page']))
                         </thead>
                         <tbody>
                             <?php
-                            if (isset($_REQUEST['from']))
-                                $sql = sprintf("SELECT * FROM flight_details WHERE from_city='%s' and to_city='%s' and departure_date='%s'", $_REQUEST['from'], $_REQUEST['to'], $_REQUEST['dep_date']);
-                            else
-                                $sql = "SELECT * FROM flight_details";
+                            $sql = getSQL();
                             $sql = sprintf($sql . " LIMIT %s,%s", $_REQUEST['Page'] * 5, 5);
                             $conn = createDBConnection();
                             $result = $conn->query($sql);
@@ -224,10 +250,7 @@ if (!isset($_REQUEST['Page']))
                         ?>
                         <li><a href="flight_management.php<?= $search ?>"><i class="nav-link-icon fa fa-arrow-left"></i></a></li>
                         <?php
-                        if (isset($_REQUEST['from']))
-                            $sql = sprintf("SELECT * FROM flight_details WHERE from_city='%s' and to_city='%s' and departure_date='%s'", $_REQUEST['from'], $_REQUEST['to'], $_REQUEST['dep_date']);
-                        else
-                            $sql = "SELECT * FROM flight_details";
+                        $sql = getSQL();
                         $result = $conn->query($sql);
                         $all = $result->num_rows;
                         $page = ($all % 5 == 0) ? intval($all / 5) : intval($all / 5) + 1;
