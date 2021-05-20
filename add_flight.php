@@ -163,24 +163,24 @@ if (isLoginAd()) {
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <label for="deparure" style="margin-left: 20px;">Number of Seats in Economy Class</label>
-                                    <input type="number" name="number_econ" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                    <input type="number" name="number_econ" class="form-control" style="margin-left: 1em;" min="50" max="200" id="deparure" required="">
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="deparure" style="margin-left: 20px;">Number of Seats in Business Class</label>
-                                        <input type="number" name="number_bus" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                        <input type="number" name="number_bus" class="form-control" style="margin-left: 1em;" min="10" max="100" id="deparure" required="">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <label for="deparure" style="margin-left: 20px;">Ticket Price(Economy Class)</label>
-                                    <input type="number" name="price_econ" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                    <input type="number" name="price_econ" class="form-control" style="margin-left: 1em;" min="100" max="1300" id="deparure" required="">
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="deparure" style="margin-left: 20px;">Ticket Price(Business Class)</label>
-                                        <input type="number" name="price_bus" class="form-control" style="margin-left: 1em;" id="deparure" required="">
+                                        <input type="number" name="price_bus" class="form-control" style="margin-left: 1em;" min="1500" max="12000" id="deparure" required="">
                                     </div>
                                 </div>
                             </div>

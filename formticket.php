@@ -60,7 +60,7 @@ require_once('formticket.php');
     }
 
     $sql =  getSql();
-    $sql = $sql . " LIMIT " . ($_REQUEST['Page'] * 3) . ",3";
+    $sql = $sql . " LIMIT " . ($_REQUEST['Page'] * 5) . ",5";
     $result = $conn->query($sql);
     if (isset($_REQUEST['Search'])) {
         $data_missing = array();
@@ -146,7 +146,7 @@ require_once('formticket.php');
                 $sql = getSql();
                 $result = $conn->query($sql);
                 $row = $result->num_rows;
-                $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
+                $pages = $row % 5 == 0 ? intval($row / 5) : intval($row / 5) + 1;
                 for ($i = 0; $i < $pages; $i++) {
                     $search = sprintf(
                         "Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search=",
@@ -222,7 +222,7 @@ require_once('formticket.php');
                 $sql = getSql();
                 $result = $conn->query($sql);
                 $row = $result->num_rows;
-                $pages = $row % 3 == 0 ? intval($row / 3) : intval($row / 3) + 1;
+                $pages = $row % 5 == 0 ? intval($row / 5) : intval($row / 5) + 1;
                 for ($i = 0; $i < $pages; $i++) {
                     $search = sprintf(
                         "Page=%s&from=%s&to=%s&dep_date=%s&no_of_pass=%s&class=%s&Search=",
@@ -249,6 +249,12 @@ require_once('formticket.php');
                 echo "<p style=\"text-align: center;\"><input class=\"mr-2 btn-icon btn-icon-only btn btn-outline-info\" type=\"submit\" value=\"Select Flight\" name=\"Select\"> </p>";
                 echo "</form>
                 </div> ";
+             echo"   <div class=\"col-md-10\" style=\"margin-left: 44%;\">";
+        if (isLoginedCus()) {
+            echo "<a href=\"user.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+        } else
+            echo "<a href=\"index.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
+   echo "</div>";
             }
         }
     } else {
@@ -259,14 +265,6 @@ require_once('formticket.php');
             echo "<a href=\"index.php\"><button style=\"margin-left: 45%;\" class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
     }
     ?>
-    <div class="col-md-10" style="margin-left: 44%;">
-        <?php
-        if (isLoginedCus()) {
-            echo "<a href=\"user.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
-        } else
-            echo "<a href=\"index.php\"><button class=\"mb-2 mr-2 btn-transition btn btn-outline-warning\">Back homepage</button></a>";
-        ?>
-    </div>
     <script>
         function checkaa() {
             var radios = document.getElementsByName('select_flight');

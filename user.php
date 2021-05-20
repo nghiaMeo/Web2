@@ -50,7 +50,7 @@ if (isLoginedCus()) {
                     <ul class="header-menu nav">
                         <a href="checkticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">CHECK TICKET</button></a>
                         <a href="reservationinfor.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION IFORMATION</button></a>
-                        <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
+                        <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED FLIGHT TICKETS</button></a>
                     </ul>
                 </div>
                 <div class="app-header-right">
@@ -618,7 +618,7 @@ if (isLoginedCus()) {
                 console = {
                     log: function() {}
                 };
-            }
+            }   
         </script>
         <script type="text/javascript" src="js/main1.js"></script>
     </body>

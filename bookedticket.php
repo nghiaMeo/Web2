@@ -44,7 +44,7 @@ require_once('libraCus.php');
                         <a href="user.php">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning"><i class="nav-link-icon fa fa-home"> HOME</i></button>
                         </a>
-                        <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED TICKET</button></a>
+                        <a href="bookedticket.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">BOOKED FLIGHT TICKETS</button></a>
                         <a href="reservationinfor.php"><button class="mb-2 mr-2 btn-transition btn btn-outline-warning">RESERVATION IFORMATION</button></a>
                     <?php
                     }

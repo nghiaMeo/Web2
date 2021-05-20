@@ -80,7 +80,7 @@ require_once('libraAd.php');
                         <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-plane"> Flights Management</i></button>
                     </a>
                     <a href="qlDonhang.php">
-                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Management Orders</i></button>
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success"><i class="nav-link-icon fa fa-list"> Order management</i></button>
                     </a>
 
                 </ul>
@@ -108,7 +108,7 @@ require_once('libraAd.php');
             <div class="main-card mb-3 card">
 
                 <div class="card-header">
-                    <h4>Management Orders</h4>
+                    <h4>Order management</h4>
 
                 </div>
                 <div class="table-responsive">

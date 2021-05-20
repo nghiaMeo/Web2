@@ -124,7 +124,7 @@ require_once('libraCus.php');
                                     </div>
                                     <div class="col-md-6" style="margin-top: 2.5%;">
                                         <fieldset>
-                                            <button type="submit" name="Search" id="form-submit" class="btn">Order Ticket Now</button>
+                                            <button type="submit" name="Search" id="form-submit" class="btn" onclick=" alert('Please login to book tickets');return false; ">Order Ticket Now</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -605,6 +605,7 @@ require_once('libraCus.php');
         }
     </script>
     <script type="text/javascript" src="js/main1.js"></script>
+
 </body>
 
 </html>
