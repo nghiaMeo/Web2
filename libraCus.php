@@ -64,3 +64,4 @@ function logoutCus()
 {
     unset($_SESSION['customer_id']);
 }
+?>

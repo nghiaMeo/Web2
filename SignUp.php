@@ -40,7 +40,8 @@ if (isset($_REQUEST['Submit'])) {
             </div>
             <form id="register" class="input-group" action="SignUp.php" method="POST">
                 <input type="text" class="input-field" name="username" placeholder="Enter a valid username	" required>
-                <input type="password" class="input-field" name="password" placeholder="Enter your password	" required>                <input type="email" class="input-field" name="email" placeholder="Enter your email ID" required>
+                <input type="password" class="input-field" name="password" placeholder="Enter your password	" required> 
+                <input type="email" class="input-field" name="email" placeholder="Enter your email ID" required>
                 <input type="text" class="input-field" name="name" placeholder="Enter your name" required>
                 <input type="text" class="input-field" name="phone_no" placeholder="Enter your phone no" required>
                 <input type="text" class="input-field" name="address" placeholder="Enter your address" required>
